@@ -4,11 +4,13 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
 <head>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Ela Admin - HTML5 Admin Template</title>
     <meta name="description" content="Ela Admin - HTML5 Admin Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
 
     <link rel="apple-touch-icon" href="https://i.imgur.com/QRAUqs9.png">
     <link rel="shortcut icon" href="https://i.imgur.com/QRAUqs9.png">
@@ -22,6 +24,7 @@
     <link rel="stylesheet" href="assets/css/cs-skin-elastic.css">
     <link rel="stylesheet" href="assets/css/lib/datatable/dataTables.bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/lib/chosen/chosen.min.css">
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 
@@ -268,7 +271,8 @@
                                             <th>Nama Kelas</th>
                                             <th>Mata Kuliah</th>
                                             <th>Dosen</th>
-                                            <th>Jadwal</th>
+                                            <th>Hari</th>
+                                            <th>Jam</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -277,16 +281,18 @@
                                             <td>Elang Eka Marga Putra</td>
                                             <td>Informatics Engineering</td>
                                             <td>National Development University</td>
+                                            <td>Minggu</td>
+                                            <td>17.00</td>
                                             <td>$1,000,000</td>
                                             <td>
-                                                    <button type="button" class="btn btn-primary mb-1" data-toggle="modal" data-target="#edit_kelas">
-                                                        <i class="fa fa-minus-circle"></i>
-                                                        Edit Kelas
-                                                    </button>
-                                                    <button type="button" class="btn btn-danger mb-1" data-toggle="modal" data-target="#hapuskelas">
-                                                        <i class="fa fa-minus-circle"></i>
-                                                        Delete Kelas
-                                                    </button>
+                                                <button type="button" class="btn btn-primary mb-1" data-toggle="modal" data-target="#editkelas">
+                                                    <i class="fa fa-pencil"></i>
+                                                    Edit Kelas
+                                                </button>
+                                                <button type="button" class="btn btn-danger mb-1" data-toggle="modal" data-target="#hapuskelas">
+                                                    <i class="fa fa-minus-circle"></i>
+                                                    Hapus Kelas
+                                                </button>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -300,20 +306,87 @@
             </div><!-- .animated -->
         </div><!-- .content -->
 
-        <div class="modal fade" id="scrollmodal" tabindex="-1" role="dialog" aria-labelledby="scrollmodalLabel" aria-hidden="true"></div>
-            <div class="modal fade" id="tambahkelas" tabindex="-1" role="dialog" aria-labelledby="staticModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-sm" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="staticModalLabel">Attention!!!</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
+        <div class="modal fade" id="tambahkelas" tabindex="-1" role="dialog" aria-labelledby="largeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="largeModalLabel">Form Tambah Kelas</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div>
+                            <div class="card">
+                                <div class="card-header">
+                                    <strong>FAKULTAS ILMU KOMPUTER</strong>
+                                </div>
+                                <div class="card-body card-block">
+                                    <div class="form-group">
+                                        <label class=" form-control-label">Kode Nama Kelas</label>
+                                        <div class="input-group">
+                                            <input class="form-control">
+                                        </div>
+                                        <small class="form-text text-muted">ex. G068</small>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class=" form-control-label">Mata Kuliah</label>
+                                        <div class="input-group">
+                                            <select data-placeholder="Choose a country..." multiple class="standardSelect">
+                                                <option value="" label="default"></option>
+                                                <option value="United States">United States</option>
+                                                <option value="United Kingdom">United Kingdom</option>
+                                                <option value="Afghanistan">Afghanistan</option>
+                                                <option value="Aland Islands">Aland Islands</option>
+                                                <option value="Albania">Albania</option>
+                                                <option value="Algeria">Algeria</option>
+                                                <option value="American Samoa">American Samoa</option>
+                                                <option value="Andorra">Andorra</option>
+                                                <option value="Angola">Angola</option>
+                                                <option value="Anguilla">Anguilla</option>
+                                                <option value="Antarctica">Antarctica</option>
+                                            </select>
+                                        </div>
+                                        <small class="form-text text-muted">ex. Pemrograman Web</small>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class=" form-control-label">Dosen Kelas</label>
+                                        <div class="input-group">
+                                            <select data-placeholder="Choose a country..." multiple class="standardSelect">
+                                                <option value="" label="default"></option>
+                                                <option value="United States">United States</option>
+                                                <option value="United Kingdom">United Kingdom</option>
+                                                <option value="Afghanistan">Afghanistan</option>
+                                                <option value="Aland Islands">Aland Islands</option>
+                                                <option value="Albania">Albania</option>
+                                                <option value="Algeria">Algeria</option>
+                                                <option value="American Samoa">American Samoa</option>
+                                                <option value="Andorra">Andorra</option>
+                                                <option value="Angola">Angola</option>
+                                                <option value="Anguilla">Anguilla</option>
+                                                <option value="Antarctica">Antarctica</option>
+                                            </select>
+                                        </div>
+                                        <small class="form-text text-muted">ex. Parlika</small>
+                                    </div>
+                                
+                                    <div class="form-group">
+                                        <label class=" form-control-label">Hari Kelas</label>
+                                        <div class="input-group">
+                                            <input class="form-control">
+                                        </div>
+                                        <small class="form-text text-muted">ex. Senin</small>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class=" form-control-label">Jam Kelas</label>
+                                        <div class="input-group">
+                                            <input class="form-control">
+                                        </div>
+                                        <small class="form-text text-muted">ex. 19.00 WIB</small>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="modal-body">
-                            <p>
-                            Apakah anda ingin menambah kelas?
-                        </p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
@@ -323,20 +396,87 @@
             </div>
         </div>
 
-        <div class="modal fade" id="scrollmodal" tabindex="-1" role="dialog" aria-labelledby="scrollmodalLabel" aria-hidden="true"></div>
-            <div class="modal fade" id="edit_kelas" tabindex="-1" role="dialog" aria-labelledby="staticModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-sm" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="staticModalLabel">Attention!!!</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
+        <div class="modal fade" id="editkelas" tabindex="-1" role="dialog" aria-labelledby="largeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="largeModalLabel">Form Edit Kelas</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div>
+                            <div class="card">
+                                <div class="card-header">
+                                    <strong>FAKULTAS ILMU KOMPUTER</strong>
+                                </div>
+                                <div class="card-body card-block">
+                                    <div class="form-group">
+                                        <label class=" form-control-label">Kode Nama Kelas</label>
+                                        <div class="input-group">
+                                            <input class="form-control">
+                                        </div>
+                                        <small class="form-text text-muted">ex. G068</small>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class=" form-control-label">Mata Kuliah</label>
+                                        <div class="input-group">
+                                            <select data-placeholder="Choose a country..." multiple class="standardSelect">
+                                                <option value="" label="default"></option>
+                                                <option value="United States">United States</option>
+                                                <option value="United Kingdom">United Kingdom</option>
+                                                <option value="Afghanistan">Afghanistan</option>
+                                                <option value="Aland Islands">Aland Islands</option>
+                                                <option value="Albania">Albania</option>
+                                                <option value="Algeria">Algeria</option>
+                                                <option value="American Samoa">American Samoa</option>
+                                                <option value="Andorra">Andorra</option>
+                                                <option value="Angola">Angola</option>
+                                                <option value="Anguilla">Anguilla</option>
+                                                <option value="Antarctica">Antarctica</option>
+                                            </select>
+                                        </div>
+                                        <small class="form-text text-muted">ex. Pemrograman Web</small>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class=" form-control-label">Dosen Kelas</label>
+                                        <div class="input-group">
+                                            <select data-placeholder="Choose a country..." multiple class="standardSelect">
+                                                <option value="" label="default"></option>
+                                                <option value="United States">United States</option>
+                                                <option value="United Kingdom">United Kingdom</option>
+                                                <option value="Afghanistan">Afghanistan</option>
+                                                <option value="Aland Islands">Aland Islands</option>
+                                                <option value="Albania">Albania</option>
+                                                <option value="Algeria">Algeria</option>
+                                                <option value="American Samoa">American Samoa</option>
+                                                <option value="Andorra">Andorra</option>
+                                                <option value="Angola">Angola</option>
+                                                <option value="Anguilla">Anguilla</option>
+                                                <option value="Antarctica">Antarctica</option>
+                                            </select>
+                                        </div>
+                                        <small class="form-text text-muted">ex. Parlika</small>
+                                    </div>
+                                
+                                    <div class="form-group">
+                                        <label class=" form-control-label">Hari Kelas</label>
+                                        <div class="input-group">
+                                            <input class="form-control">
+                                        </div>
+                                        <small class="form-text text-muted">ex. Senin</small>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class=" form-control-label">Jam Kelas</label>
+                                        <div class="input-group">
+                                            <input class="form-control">
+                                        </div>
+                                        <small class="form-text text-muted">ex. 19.00 WIB</small>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="modal-body">
-                            <p>
-                            Apakah anda ingin mengedit kelas?
-                        </p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
@@ -346,19 +486,21 @@
             </div>
         </div>
 
-        <div class="modal fade" id="scrollmodal" tabindex="-1" role="dialog" aria-labelledby="scrollmodalLabel" aria-hidden="true"></div>
-            <div class="modal fade" id="hapuskelas" tabindex="-1" role="dialog" aria-labelledby="staticModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-sm" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="staticModalLabel">Attention!!!</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <p>
-                            Apakah anda ingin menghapus kelas?
+        <div class="modal fade" id="hapuskelas" tabindex="-1" role="dialog" aria-labelledby="largeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="largeModalLabel">Large Modal</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            There are three species of zebras: the plains zebra, the mountain zebra and the Grévy's zebra. The plains zebra
+                            and the mountain zebra belong to the subgenus Hippotigris, but Grévy's zebra is the sole species of subgenus
+                            Dolichohippus. The latter resembles an ass, to which it is closely related, while the former two are more
+                            horse-like. All three belong to the genus Equus, along with other living equids.
                         </p>
                     </div>
                     <div class="modal-footer">
@@ -367,8 +509,7 @@
                     </div>
                 </div>
             </div>
-        </div>        
-
+        </div>
 
         <div class="clearfix"></div>
 
@@ -407,14 +548,22 @@
     <script src="assets/js/lib/data-table/buttons.print.min.js"></script>
     <script src="assets/js/lib/data-table/buttons.colVis.min.js"></script>
     <script src="assets/js/init/datatables-init.js"></script>
+    <script src="assets/js/lib/chosen/chosen.jquery.min.js"></script>
 
 
     <script type="text/javascript">
         $(document).ready(function() {
           $('#bootstrap-data-table-export').DataTable();
       } );
-  </script>
-
-
+    </script>
+    <script>
+        jQuery(document).ready(function() {
+            jQuery(".standardSelect").chosen({
+                disable_search_threshold: 10,
+                no_results_text: "Oops, nothing found!",
+                width: "100%"
+            });
+        });
+    </script>
 </body>
 </html>
