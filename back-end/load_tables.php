@@ -8,6 +8,7 @@
                         kelas.jam_kelas,
                         mata_kuliah.nama_mk, 
                         mata_kuliah.sks,
+                        mata_kuliah.status_mk,
                         dosen.nama_dosen
                     FROM kelas 
                     INNER JOIN mata_kuliah, dosen
@@ -25,11 +26,13 @@
             <td> <span class='name'>". $row_kelas['nama_dosen'] ."</span> </td>
             <td><span class='product'>". $row_kelas['hari_kelas'] ."</span></td>
             <td><span class='>". $row_kelas['jam_kuliah'] ."</span></td>
-            <td>
-                <span class='badge badge-pending'>");
-                Active
-        echo ("</span>
-            </td>
+            <td>");
+            if($row_kelas['status']){
+                
+            }
+            <span class='badge badge-pending'>Active</span>
+            
+            echo("</td>
         </tr>
         ");
     }

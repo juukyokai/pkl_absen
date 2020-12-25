@@ -1,7 +1,6 @@
 <?php
     //inserting connection
-    include(db_connect.php);
-
+    require('front-end/dosen_view/index.php');
 ?>
 
 
