@@ -26,7 +26,9 @@
             <td><span class='product'>". $row_kelas['hari_kelas'] ."</span></td>
             <td><span class='>". $row_kelas['jam_kuliah'] ."</span></td>
             <td>
-                <span class='badge badge-pending'>Active</span>
+                <span class='badge badge-pending'>");
+                Active
+        echo ("</span>
             </td>
         </tr>
         ");
