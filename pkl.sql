@@ -173,6 +173,7 @@ CREATE TABLE `mata_kuliah` (
   `id_mk` int(11) NOT NULL,
   `id_jurusan` int(11) NOT NULL,
   `nama_mk` varchar(255) NOT NULL,
+  `sks` int(11) NOT NULL,
   `status_mk` int(11) NOT NULL DEFAULT 1,
   `create_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `update_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
@@ -182,10 +183,10 @@ CREATE TABLE `mata_kuliah` (
 -- Dumping data for table `mata_kuliah`
 --
 
-INSERT INTO `mata_kuliah` (`id_mk`, `id_jurusan`, `nama_mk`, `status_mk`, `create_at`, `update_at`) VALUES
-(1, 1, 'Pemrograman Web', 1, '2020-12-23 03:34:32', '2020-12-23 18:32:04'),
-(2, 2, 'Manajemen IT', 1, '2020-12-23 03:34:32', '2020-12-23 18:32:11'),
-(3, 1, 'Pemrograman API', 1, '2020-12-23 03:34:32', '2020-12-23 18:32:17');
+INSERT INTO `mata_kuliah` (`id_mk`, `id_jurusan`, `nama_mk`, `sks`, `status_mk`, `create_at`, `update_at`) VALUES
+(1, 1, 'Pemrograman Web', 3, 1, '2020-12-23 03:34:32', '2020-12-23 18:32:04'),
+(2, 2, 'Manajemen IT', 3, 1, '2020-12-23 03:34:32', '2020-12-23 18:32:11'),
+(3, 1, 'Pemrograman API', 3, 1, '2020-12-23 03:34:32', '2020-12-23 18:32:17');
 
 --
 -- Indexes for dumped tables
