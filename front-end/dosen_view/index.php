@@ -278,6 +278,11 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                <?php
+                                                    require('back-end/load_tables.php');
+
+                                                ?>
+                                                <!--
                                                 <tr>
                                                     <td class="serial">1.</td>
                                                     <td> #5469 </td>
@@ -350,6 +355,7 @@
                                                         <span class="badge badge-taken">Taken</span>
                                                     </td>
                                                 </tr>
+                                                -->
                                             </tbody>
                                         </table>
                                     </div> <!-- /.table-stats -->
