@@ -27,16 +27,16 @@
             <td><span class='product'>". $row_kelas['hari_kelas'] ."</span></td>
             <td><span class='>". $row_kelas['jam_kuliah'] ."</span></td>
             <td>");
-            if($row_kelas['status']){
-                
+            if($row_kelas['status']==1){
+                echo("<span class='badge badge-pending'>Active</span>");
+            }else if($row_kelas['status']==2){
+                echo("<span class='badge badge-complete'>Complete</span>");
             }
-            <span class='badge badge-pending'>Active</span>
-            
             echo("</td>
         </tr>
         ");
     }
     
-
+    $conn->close
 
 ?>
