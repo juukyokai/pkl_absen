@@ -10,9 +10,10 @@
                         kelas.jam_kelas,
                         mata_kuliah.nama_mk, 
                         mata_kuliah.sks,
-                        mata_kuliah.status_mk
-                    FROM kelas, mata_kuliah
-                    WHERE kelas.id_mk=mata_kuliah.id_mk
+                        mata_kuliah.status_mk,
+                        dosen.nama_dosen
+                    FROM kelas, mata_kuliah, dosen
+                    WHERE kelas.id_mk=mata_kuliah.id_mk AND kelas.id_dosen=dosen.id_dosen
                     ORDER BY kelas.id_kelas";
                     
     $result = $conn->query($sql_kelas);
@@ -25,7 +26,7 @@
             <td> #". $row_kelas['id_kelas'] ." </td>
             <td> <span class='name'>". $row_kelas['nama_mk'] ." - ". $row_kelas['kode_nama_kelas'] ."</span> </td>
             <td> <span class='count'>". $row_kelas['sks'] ."</span> </td>
-            <td> <span class='name'>Cak Prat</span> </td>
+            <td> <span class='name'>". $row_kelas['nama_dosen'] ."</span> </td>
             <td><span class='product'>". $row_kelas['hari_kelas'] ."</span></td>
             <td><span class=>". $row_kelas['jam_kelas'] ."</span></td>
             <td>");
@@ -41,7 +42,7 @@
         ");
         $iterasi=$iterasi+1;
     }
-    
+    $conn->close();
     
 
 ?>
