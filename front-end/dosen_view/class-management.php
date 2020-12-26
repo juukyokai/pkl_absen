@@ -21,10 +21,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/css/flag-icon.min.css">
-    <link rel="stylesheet" href="assets/css/cs-skin-elastic.css">
-    <link rel="stylesheet" href="assets/css/lib/datatable/dataTables.bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/lib/chosen/chosen.min.css">
+    <link rel="stylesheet" href="front-end/dosen_view/assets/css/cs-skin-elastic.css">
+    <link rel="stylesheet" href="front-end/dosen_view/assets/css/lib/datatable/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href="front-end/dosen_view/assets/css/style.css">
+    <link rel="stylesheet" href="front-end/dosen_view/assets/css/lib/chosen/chosen.min.css">
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 
@@ -125,8 +125,8 @@
         <header id="header" class="header">
             <div class="top-left">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="./"><img src="images/logo.png" alt="Logo"></a>
-                    <a class="navbar-brand hidden" href="./"><img src="images/logo2.png" alt="Logo"></a>
+                    <a class="navbar-brand" href="./"><img src="front-end/dosen_view/images/logo.png" alt="Logo"></a>
+                    <a class="navbar-brand hidden" href="./"><img src="front-end/dosen_view/images/logo2.png" alt="Logo"></a>
                     <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
                 </div>
             </div>
@@ -208,7 +208,7 @@
 
                     <div class="user-area dropdown float-right">
                         <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="user-avatar rounded-circle" src="images/admin.jpg" alt="User Avatar">
+                            <img class="user-avatar rounded-circle" src="front-end/dosen_view/images/admin.jpg" alt="User Avatar">
                         </a>
 
                         <div class="user-menu dropdown-menu">
@@ -270,6 +270,7 @@
                                             
                                             <th>Nama Kelas</th>
                                             <th>Mata Kuliah</th>
+                                            <th>SKS</th>
                                             <th>Dosen</th>
                                             <th>Hari</th>
                                             <th>Jam</th>
@@ -277,24 +278,10 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>Elang Eka Marga Putra</td>
-                                            <td>Informatics Engineering</td>
-                                            <td>National Development University</td>
-                                            <td>Minggu</td>
-                                            <td>17.00</td>
-                                            <td>$1,000,000</td>
-                                            <td>
-                                                <button type="button" class="btn btn-primary mb-1" data-toggle="modal" data-target="#editkelas">
-                                                    <i class="fa fa-pencil"></i>
-                                                    Edit Kelas
-                                                </button>
-                                                <button type="button" class="btn btn-danger mb-1" data-toggle="modal" data-target="#hapuskelas">
-                                                    <i class="fa fa-minus-circle"></i>
-                                                    Hapus Kelas
-                                                </button>
-                                            </td>
-                                        </tr>
+                                        
+                                            <?php
+                                                require('back-end/tampil_kelas.php');
+                                            ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -321,50 +308,41 @@
                                 <div class="card-header">
                                     <strong>FAKULTAS ILMU KOMPUTER</strong>
                                 </div>
-                                <div class="card-body card-block">
+                                <div class="card-body card-block" id="fupForm">
                                     <div class="form-group">
                                         <label class=" form-control-label">Kode Nama Kelas</label>
                                         <div class="input-group">
-                                            <input class="form-control">
+                                            <input id="I_KNK" class="form-control" type="text" name="hari_kelas" placeholder="Masukkan Kode Nama Kelas">
                                         </div>
                                         <small class="form-text text-muted">ex. G068</small>
                                     </div>
                                     <div class="form-group">
                                         <label class=" form-control-label">Mata Kuliah</label>
                                         <div class="input-group">
-                                            <select data-placeholder="Choose a country..." multiple class="standardSelect">
+                                            <select id="I_MK" data-placeholder="Pilih Matkul ..." multiple class="standardSelect">
                                                 <option value="" label="default"></option>
-                                                <option value="United States">United States</option>
-                                                <option value="United Kingdom">United Kingdom</option>
-                                                <option value="Afghanistan">Afghanistan</option>
-                                                <option value="Aland Islands">Aland Islands</option>
-                                                <option value="Albania">Albania</option>
-                                                <option value="Algeria">Algeria</option>
-                                                <option value="American Samoa">American Samoa</option>
-                                                <option value="Andorra">Andorra</option>
-                                                <option value="Angola">Angola</option>
-                                                <option value="Anguilla">Anguilla</option>
-                                                <option value="Antarctica">Antarctica</option>
+                                                <?php
+                                                require('back-end/load_matkul.php');
+                                                ?>
                                             </select>
                                         </div>
                                         <small class="form-text text-muted">ex. Pemrograman Web</small>
                                     </div>
                                     <div class="form-group">
+                                        <label class=" form-control-label">Masukkan SKS ...</label>
+                                        <div class="input-group">
+                                            <input id="I_SKS" class="form-control" type="text" name="hari_kelas" placeholder="Masukkan Kode Nama Kelas">
+                                        </div>
+                                        <small class="form-text text-muted">ex. 3</small>
+                                    </div>
+                                    <div class="form-group">
                                         <label class=" form-control-label">Dosen Kelas</label>
                                         <div class="input-group">
-                                            <select data-placeholder="Choose a country..." multiple class="standardSelect">
+                                            <select id="I_DOSEN" data-placeholder="Pilih Dosen ..." multiple class="standardSelect">
                                                 <option value="" label="default"></option>
-                                                <option value="United States">United States</option>
-                                                <option value="United Kingdom">United Kingdom</option>
-                                                <option value="Afghanistan">Afghanistan</option>
-                                                <option value="Aland Islands">Aland Islands</option>
-                                                <option value="Albania">Albania</option>
-                                                <option value="Algeria">Algeria</option>
-                                                <option value="American Samoa">American Samoa</option>
-                                                <option value="Andorra">Andorra</option>
-                                                <option value="Angola">Angola</option>
-                                                <option value="Anguilla">Anguilla</option>
-                                                <option value="Antarctica">Antarctica</option>
+                                                <?php
+                                                require('back-end/load_dosen.php');
+                                                ?>
                                             </select>
                                         </div>
                                         <small class="form-text text-muted">ex. Parlika</small>
@@ -373,16 +351,16 @@
                                     <div class="form-group">
                                         <label class=" form-control-label">Hari Kelas</label>
                                         <div class="input-group">
-                                            <input class="form-control">
+                                            <input id="I_HARI" class="form-control" type="text" name="hari_kelas" placeholder="Masukkan Hari Kelas ...">
                                         </div>
                                         <small class="form-text text-muted">ex. Senin</small>
                                     </div>
                                     <div class="form-group">
                                         <label class=" form-control-label">Jam Kelas</label>
                                         <div class="input-group">
-                                            <input class="form-control">
+                                            <input id="I_JAM" class="form-control" type="text" name="hari_kelas" placeholder="Masukkan Jam Kelas ...">
                                         </div>
-                                        <small class="form-text text-muted">ex. 19.00 WIB</small>
+                                        <small class="form-text text-muted">ex. 19.00.00</small>
                                     </div>
                                 </div>
                             </div>
@@ -390,7 +368,8 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <button type="button" class="btn btn-primary">Confirm</button>
+                        <button type="button" class="btn btn-primary" id="button_save">Confirm</button>
+                        <button type="button" class="btn btn-primary badge-complete" id="button_finish">Finish</button>
                     </div>
                 </div>
             </div>
@@ -412,49 +391,40 @@
                                     <strong>FAKULTAS ILMU KOMPUTER</strong>
                                 </div>
                                 <div class="card-body card-block">
-                                    <div class="form-group">
+                                <div class="form-group">
                                         <label class=" form-control-label">Kode Nama Kelas</label>
                                         <div class="input-group">
-                                            <input class="form-control">
+                                            <input id="E_KNK" class="form-control" type="text" name="hari_kelas" placeholder="Masukkan Kode Nama Kelas">
                                         </div>
                                         <small class="form-text text-muted">ex. G068</small>
                                     </div>
                                     <div class="form-group">
                                         <label class=" form-control-label">Mata Kuliah</label>
                                         <div class="input-group">
-                                            <select data-placeholder="Choose a country..." multiple class="standardSelect">
+                                            <select id="E_MK" data-placeholder="Pilih Matkul ..." multiple class="standardSelect">
                                                 <option value="" label="default"></option>
-                                                <option value="United States">United States</option>
-                                                <option value="United Kingdom">United Kingdom</option>
-                                                <option value="Afghanistan">Afghanistan</option>
-                                                <option value="Aland Islands">Aland Islands</option>
-                                                <option value="Albania">Albania</option>
-                                                <option value="Algeria">Algeria</option>
-                                                <option value="American Samoa">American Samoa</option>
-                                                <option value="Andorra">Andorra</option>
-                                                <option value="Angola">Angola</option>
-                                                <option value="Anguilla">Anguilla</option>
-                                                <option value="Antarctica">Antarctica</option>
+                                                <?php
+                                                require('back-end/load_matkul.php');
+                                                ?>
                                             </select>
                                         </div>
                                         <small class="form-text text-muted">ex. Pemrograman Web</small>
                                     </div>
                                     <div class="form-group">
+                                        <label class=" form-control-label">Masukkan SKS ...</label>
+                                        <div class="input-group">
+                                            <input id="E_SKS" class="form-control" type="text" name="hari_kelas" placeholder="Masukkan Kode Nama Kelas">
+                                        </div>
+                                        <small class="form-text text-muted">ex. 3</small>
+                                    </div>
+                                    <div class="form-group">
                                         <label class=" form-control-label">Dosen Kelas</label>
                                         <div class="input-group">
-                                            <select data-placeholder="Choose a country..." multiple class="standardSelect">
+                                            <select id="E_DOSEN" data-placeholder="Pilih Dosen ..." multiple class="standardSelect">
                                                 <option value="" label="default"></option>
-                                                <option value="United States">United States</option>
-                                                <option value="United Kingdom">United Kingdom</option>
-                                                <option value="Afghanistan">Afghanistan</option>
-                                                <option value="Aland Islands">Aland Islands</option>
-                                                <option value="Albania">Albania</option>
-                                                <option value="Algeria">Algeria</option>
-                                                <option value="American Samoa">American Samoa</option>
-                                                <option value="Andorra">Andorra</option>
-                                                <option value="Angola">Angola</option>
-                                                <option value="Anguilla">Anguilla</option>
-                                                <option value="Antarctica">Antarctica</option>
+                                                <?php
+                                                require('back-end/load_dosen.php');
+                                                ?>
                                             </select>
                                         </div>
                                         <small class="form-text text-muted">ex. Parlika</small>
@@ -463,16 +433,16 @@
                                     <div class="form-group">
                                         <label class=" form-control-label">Hari Kelas</label>
                                         <div class="input-group">
-                                            <input class="form-control">
+                                            <input id="E_HARI" class="form-control" type="text" name="hari_kelas" placeholder="Masukkan Hari Kelas ...">
                                         </div>
                                         <small class="form-text text-muted">ex. Senin</small>
                                     </div>
                                     <div class="form-group">
                                         <label class=" form-control-label">Jam Kelas</label>
                                         <div class="input-group">
-                                            <input class="form-control">
+                                            <input id="E_JAM" class="form-control" type="text" name="hari_kelas" placeholder="Masukkan Jam Kelas ...">
                                         </div>
-                                        <small class="form-text text-muted">ex. 19.00 WIB</small>
+                                        <small class="form-text text-muted">ex. 19.00.00</small>
                                     </div>
                                 </div>
                             </div>
@@ -535,20 +505,20 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
-    <script src="assets/js/main.js"></script>
+    <script src="front-end/dosen_view/assets/js/main.js"></script>
 
 
-    <script src="assets/js/lib/data-table/datatables.min.js"></script>
-    <script src="assets/js/lib/data-table/dataTables.bootstrap.min.js"></script>
-    <script src="assets/js/lib/data-table/dataTables.buttons.min.js"></script>
-    <script src="assets/js/lib/data-table/buttons.bootstrap.min.js"></script>
-    <script src="assets/js/lib/data-table/jszip.min.js"></script>
-    <script src="assets/js/lib/data-table/vfs_fonts.js"></script>
-    <script src="assets/js/lib/data-table/buttons.html5.min.js"></script>
-    <script src="assets/js/lib/data-table/buttons.print.min.js"></script>
-    <script src="assets/js/lib/data-table/buttons.colVis.min.js"></script>
-    <script src="assets/js/init/datatables-init.js"></script>
-    <script src="assets/js/lib/chosen/chosen.jquery.min.js"></script>
+    <script src="front-end/dosen_view/assets/js/lib/data-table/datatables.min.js"></script>
+    <script src="front-end/dosen_view/assets/js/lib/data-table/dataTables.bootstrap.min.js"></script>
+    <script src="front-end/dosen_view/assets/js/lib/data-table/dataTables.buttons.min.js"></script>
+    <script src="front-end/dosen_view/assets/js/lib/data-table/buttons.bootstrap.min.js"></script>
+    <script src="front-end/dosen_view/assets/js/lib/data-table/jszip.min.js"></script>
+    <script src="front-end/dosen_view/assets/js/lib/data-table/vfs_fonts.js"></script>
+    <script src="front-end/dosen_view/assets/js/lib/data-table/buttons.html5.min.js"></script>
+    <script src="front-end/dosen_view/assets/js/lib/data-table/buttons.print.min.js"></script>
+    <script src="front-end/dosen_view/assets/js/lib/data-table/buttons.colVis.min.js"></script>
+    <script src="front-end/dosen_view/assets/js/init/datatables-init.js"></script>
+    <script src="front-end/dosen_view/assets/js/lib/chosen/chosen.jquery.min.js"></script>
 
 
     <script type="text/javascript">
@@ -565,5 +535,60 @@
             });
         });
     </script>
+    <!-- Tambah Kelas -->
+    <script>
+    $(document).ready(function() {
+        $('#button_save').on('click', function() {
+            if(I_KNK=="" && I_MK=="" && I_SKS=="" && I_DOSEN=="" && I_HARI=="" && I_JAM==""){
+                alert('Mohon Isi Terlebih Dahulu Sebelum Tekan Confirm !');
+            }else{
+                $("#button_save").attr("disabled", "disabled");
+                var I_KNK = $('#I_KNK').val();
+                var I_MK = $('#I_MK').val();
+                var I_SKS = $('#I_SKS').val();
+                var I_DOSEN = $('#I_DOSEN').val();
+                var I_HARI = $('#I_HARI').val();
+                var I_JAM = $('#I_JAM').val();
+                if(I_KNK!="" && I_MK!="" && I_SKS!="" && I_DOSEN!="" && I_HARI!="" && I_JAM!=""){
+                    $.ajax({
+                        url: "tambahkelas.php",
+                        type: "POST",
+                        data: {
+                            I_KNK: I_KNK,
+                            I_MK: I_MK,
+                            I_SKS: I_SKS,
+                            I_DOSEN: I_DOSEN,
+                            I_HARI: I_HARI,
+                            I_JAM: I_JAM,	
+                        },
+                        cache: false,
+                        success: function(dataResult){
+                            var dataResult = JSON.parse(dataResult);
+                            if(dataResult.statusCode==200){
+                                $("#button_save").removeAttr("disabled");
+                                $('#fupForm').find('input="text"').val('');
+                                $("#success").show();
+                                $('#fupForm').hide();
+                            }
+                            else if(dataResult.statusCode==201){
+                            alert("Error occured !");
+                            }
+                        }
+                    });
+                }
+                else{
+                    alert('Mohon Isi Terlebih Dahulu Sebelum Tekan Confirm !');
+                }
+            }
+            
+        });
+    });
+</script>
+<script>
+            var finishBtn = document.getElementById("button_finish");
+            finishBtn.onclick = function() {
+                modal.style.display = "none"
+            }
+</script>
 </body>
 </html>
