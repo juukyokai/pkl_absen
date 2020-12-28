@@ -263,14 +263,17 @@
                                         <tr>
                                             <th>Nama</th>
                                             <th>NPM</th>
-                                            <th>Jurusan</th>
+                                            <th>Kelas</th>
                                             <th>Email</th>
                                             <th>Absen</th>
                                             <th>Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
+                                        <?php
+                                            require('back-end/cek_absen_st_management.php');
+                                        ?>
+                                        <!-- <tr>
                                             <td>Tiger Nixon</td>
                                             <td>18081012031</td>
                                             <td>System Architect</td>
@@ -357,7 +360,7 @@
                                             <td>CPrat@gmail.com</td>
                                             <td>92%</td>
                                             <td>Aktif</td>
-                                        </tr>
+                                        </tr> -->
                                     </tbody>
                                 </table>
                             </div>
