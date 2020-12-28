@@ -11,8 +11,8 @@
                     mahasiswa.email_mhs,
                     kelas.kode_nama_kelas,
                     mata_kuliah.nama_mk
-                FROM kbm, mahasiswa, kelas, dosen, mata_kuliah
-                WHERE kbm.id_kelas=kelas.id_kelas AND kelas.id_mk=mata_kuliah.id_mk AND kbm.id_mhs=mahasiswa.id_mhs AND kelas.id_kelas=2 AND mahasiswa.id_mhs=1
+                FROM kbm, mahasiswa, kelas, mata_kuliah
+                WHERE kbm.id_kelas=kelas.id_kelas AND kelas.id_mk=mata_kuliah.id_mk AND kbm.id_mhs=mahasiswa.id_mhs AND kelas.id_kelas=$id_kelas AND mahasiswa.id_mhs=$id_mhs
                 ORDER BY kbm.id_kbm";
         return $query;
     }
@@ -23,7 +23,7 @@
         $abs_total = 0;     //absen total
         $jml_hadir = 0;     //jumlah hadir
         $ket = "Non-Aktif";           //keaktifan
-        require('db-connect.php');
+        require('db_connect.php');
         $result = $conn->query($query);
         while($row_query = mysqli_fetch_array($result)){
             $abs_awal = $row_query['kehadiran_awal'];
@@ -35,23 +35,27 @@
             }
             echo ("
                 <tr>
-                    <td>". $row_absen['nama_mhs'] ."</td>
-                    <td>". $row_absen['npm_mhs'] ."</td>
-                    <td>". $row_absen['nama_mk'] ." - ". $row_absen['kode_nama_kelas'] ."</td>
-                    <td>". $row_absen['email_mhs'] ."</td>
+                    <td>". $row_query['nama_mhs'] ."</td>
+                    <td>". $row_query['npm_mhs'] ."</td>
+                    <td>". $row_query['nama_mk'] ." - ". $row_query['kode_nama_kelas'] ."</td>
+                    <td>". $row_query['email_mhs'] ."</td>
                     <td>". ($abs_total*100) ."%</td>
                     <td>". $ket ."</td>
                 </tr>
                 ");
         }
+        $conn->close();
     }
-
-    $default_query ="SELECT
-                        kbm.id_kbm,
-                        mahasiswa.id_mhs,
-                        mata_kuliah.nama_mk
-                    FROM kbm, mahasiswa, kelas, dosen, mata_kuliah
-                    WHERE kbm.id_kelas=kelas.id_kelas AND kelas.id_mk=mata_kuliah.id_mk AND kbm.id_mhs=mahasiswa.id_mhs AND kelas.id_kelas=2 AND mahasiswa.id_mhs=1
+    $kelas = 2;
+    $default_query ="SELECT DISTINCT
+                        kbm.id_mhs
+                    FROM kbm, kelas 
+                    WHERE
+                        kbm.id_kelas=kelas.id_kelas     /*   kbm <-> kelas   */
+                            AND
+                        kbm.id_kelas=$kelas             /* kelas G002 */
+                            AND 
+                        kelas.id_dosen=2                /* dosen Jefri */
                     ORDER BY kbm.id_kbm";
 
 
@@ -60,7 +64,20 @@
     $result = $conn->query($default_query);
     //loop-print table content
     while($row_absen = mysqli_fetch_array($result)){
-        
+        // echo ("
+        //         <tr>
+        //             <td>". $row_absen['nama_mhs'] ."</td>
+        //             <td>". $row_absen['npm_mhs'] ."</td>
+        //             <td>". $row_absen['nama_mk'] ." - ". $row_absen['kode_nama_kelas'] ."</td>
+        //             <td>". $row_absen['email_mhs'] ."</td>
+        //             <td>". ($abs_total*100) ."%</td>
+        //             <td>". $ket ."</td>
+        //         </tr>
+        //         ");
+        $prep_query= prepare_query($row_absen['id_mhs'],$kelas);
+        processing_absen(
+            $prep_query
+        );
     }
     $conn->close();
     

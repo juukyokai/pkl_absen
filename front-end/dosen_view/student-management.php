@@ -271,7 +271,7 @@
                                     </thead>
                                     <tbody>
                                         <?php
-                                            require('back-end/cek_absen_st_management.php');
+                                            require('../../back-end/cek_absen_st_management.php');
                                         ?>
                                         <!-- <tr>
                                             <td>Tiger Nixon</td>
