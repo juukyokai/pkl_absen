@@ -16,15 +16,14 @@
                     
     $result = $conn->query($sql_kelas);
     //loop-print table content
-    while($row_kelas = mysqli_fetch_array($result)){
-        echo ("
+    while($row_kelas = mysqli_fetch_array($result)):?>
         <tr>
-            <td> <span class='name'>". $row_kelas['kode_nama_kelas'] ."</span> </td>
-            <td> <span class='name'>". $row_kelas['nama_mk'] ."</span> </td>
-            <td> <span class='count'>". $row_kelas['sks'] ."</span> </td>
-            <td> <span class='name'>". $row_kelas['nama_dosen'] ."</span> </td>
-            <td><span class='product'>". $row_kelas['hari_kelas'] ."</span></td>
-            <td><span class=>". $row_kelas['jam_kelas'] ."</span></td>
+            <td> <span class='name'><?php echo $row_kelas['kode_nama_kelas'] ?></span> </td>
+            <td> <span class='name'><?php echo $row_kelas['nama_mk'] ?></span> </td>
+            <td> <span class='count'><?php echo $row_kelas['sks'] ?></span> </td>
+            <td> <span class='name'><?php echo $row_kelas['nama_dosen'] ?></span> </td>
+            <td><span class='product'><?php echo $row_kelas['hari_kelas'] ?></span></td>
+            <td><span class=><?php echo $row_kelas['jam_kelas'] ?></span></td>
             <td>
                 <button type='button' class='btn btn-primary mb-1' data-toggle='modal' data-target='#editkelas'>
                     <i class='fa fa-pencil'></i>
@@ -36,10 +35,8 @@
                 </button>
             </td>
         </tr>
-        ");
-    }
-    $conn->close();
-    
-    
+
+        
+    <?php endwhile;
 
 ?>

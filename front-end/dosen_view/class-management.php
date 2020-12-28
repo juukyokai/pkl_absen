@@ -309,17 +309,18 @@
                                     <strong>FAKULTAS ILMU KOMPUTER</strong>
                                 </div>
                                 <div class="card-body card-block" id="fupForm">
+                                <form method="POST" id="insert_form">
                                     <div class="form-group">
                                         <label class=" form-control-label">Kode Nama Kelas</label>
                                         <div class="input-group">
-                                            <input id="I_KNK" class="form-control" type="text" name="hari_kelas" placeholder="Masukkan Kode Nama Kelas">
+                                            <input id="kode_nama_kelas" class="form-control" type="text" name="kode_nama_kelas" placeholder="Masukkan Kode Nama Kelas">
                                         </div>
                                         <small class="form-text text-muted">ex. G068</small>
                                     </div>
                                     <div class="form-group">
                                         <label class=" form-control-label">Mata Kuliah</label>
                                         <div class="input-group">
-                                            <select id="I_MK" data-placeholder="Pilih Matkul ..." multiple class="standardSelect">
+                                            <select id="id_mk" name="id_mk" data-placeholder="Pilih Matkul ..." multiple class="standardSelect">
                                                 <option value="" label="default"></option>
                                                 <?php
                                                 require('back-end/load_matkul.php');
@@ -331,14 +332,14 @@
                                     <div class="form-group">
                                         <label class=" form-control-label">Masukkan SKS ...</label>
                                         <div class="input-group">
-                                            <input id="I_SKS" class="form-control" type="text" name="hari_kelas" placeholder="Masukkan Kode Nama Kelas">
+                                            <input id="sks" class="form-control" type="text" name="sks" placeholder="Masukkan Kode Nama Kelas">
                                         </div>
                                         <small class="form-text text-muted">ex. 3</small>
                                     </div>
                                     <div class="form-group">
                                         <label class=" form-control-label">Dosen Kelas</label>
                                         <div class="input-group">
-                                            <select id="I_DOSEN" data-placeholder="Pilih Dosen ..." multiple class="standardSelect">
+                                            <select id="id_dosen" name="id_dosen" data-placeholder="Pilih Dosen ..." multiple class="standardSelect">
                                                 <option value="" label="default"></option>
                                                 <?php
                                                 require('back-end/load_dosen.php');
@@ -351,17 +352,19 @@
                                     <div class="form-group">
                                         <label class=" form-control-label">Hari Kelas</label>
                                         <div class="input-group">
-                                            <input id="I_HARI" class="form-control" type="text" name="hari_kelas" placeholder="Masukkan Hari Kelas ...">
+                                            <input id="hari_kelas" class="form-control" type="text" name="hari_kelas" placeholder="Masukkan Hari Kelas ...">
                                         </div>
                                         <small class="form-text text-muted">ex. Senin</small>
                                     </div>
                                     <div class="form-group">
-                                        <label class=" form-control-label">Jam Kelas</label>
+                                        <label for="jam" class=" form-control-label">Jam Kelas</label>
                                         <div class="input-group">
-                                            <input id="I_JAM" class="form-control" type="text" name="hari_kelas" placeholder="Masukkan Jam Kelas ...">
+                                            <input id="jam_kelas" class="form-control" type="text" name="jam_kelas" placeholder="Masukkan Jam Kelas ...">
                                         </div>
                                         <small class="form-text text-muted">ex. 19.00.00</small>
                                     </div>
+                                        <input type="submit" name="insert" id="insert" value="Insert" class="btn btn-success" />
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -369,7 +372,7 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                         <button type="button" class="btn btn-primary" id="button_save">Confirm</button>
-                        <button type="button" class="btn btn-primary badge-complete" id="button_finish">Finish</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Selesai</button>
                     </div>
                 </div>
             </div>
@@ -537,58 +540,53 @@
     </script>
     <!-- Tambah Kelas -->
     <script>
-    $(document).ready(function() {
-        $('#button_save').on('click', function() {
-            if(I_KNK=="" && I_MK=="" && I_SKS=="" && I_DOSEN=="" && I_HARI=="" && I_JAM==""){
-                alert('Mohon Isi Terlebih Dahulu Sebelum Tekan Confirm !');
-            }else{
-                $("#button_save").attr("disabled", "disabled");
-                var I_KNK = $('#I_KNK').val();
-                var I_MK = $('#I_MK').val();
-                var I_SKS = $('#I_SKS').val();
-                var I_DOSEN = $('#I_DOSEN').val();
-                var I_HARI = $('#I_HARI').val();
-                var I_JAM = $('#I_JAM').val();
-                if(I_KNK!="" && I_MK!="" && I_SKS!="" && I_DOSEN!="" && I_HARI!="" && I_JAM!=""){
-                    $.ajax({
-                        url: "tambahkelas.php",
-                        type: "POST",
-                        data: {
-                            I_KNK: I_KNK,
-                            I_MK: I_MK,
-                            I_SKS: I_SKS,
-                            I_DOSEN: I_DOSEN,
-                            I_HARI: I_HARI,
-                            I_JAM: I_JAM,	
-                        },
-                        cache: false,
-                        success: function(dataResult){
-                            var dataResult = JSON.parse(dataResult);
-                            if(dataResult.statusCode==200){
-                                $("#button_save").removeAttr("disabled");
-                                $('#fupForm').find('input="text"').val('');
-                                $("#success").show();
-                                $('#fupForm').hide();
-                            }
-                            else if(dataResult.statusCode==201){
-                            alert("Error occured !");
-                            }
-                        }
-                    });
-                }
-                else{
-                    alert('Mohon Isi Terlebih Dahulu Sebelum Tekan Confirm !');
-                }
-            }
-            
-        });
+    $(document).ready(function(){
+    // Begin Aksi Insert
+    $('#insert_form').on("submit", function(event){  
+    event.preventDefault();  
+    if($('#kode_nama_kelas').val() == "")  
+    {  
+    alert("Mohon Isi Kode Nama Kelas ");  
+    }  
+    else if($('#id_mk').val() == '')  
+    {  
+    alert("Mohon Isi id_mk");  
+    }
+    else if($('#sks').val() == '')  
+    {  
+    alert("Mohon Isi sks");  
+    }
+    else if($('#id_dosen').val() == '')  
+    {  
+    alert("Mohon Isi dosen");  
+    }
+    else if($('#hari_kelas').val() == '')  
+    {  
+    alert("Mohon Isi Hari Kelas");  
+    }
+    else if($('#jam_kelas').val() == '')  
+    {  
+    alert("Mohon Isi Jam Kelas");  
+    }
+    
+    else  
+    {  
+    $.ajax({  
+        url:"back-end/tambahkelas.php",  
+        method:"POST",  
+        data:$('#insert_form').serialize(),  
+        beforeSend:function(){  
+        $('#insert').val("Inserting");  
+        },  
+        success:function(data){  
+        $('#insert_form')[0].reset();
+        $('#employee_table').html(data);  
+        }  
+    });  
+    }  
     });
-</script>
-<script>
-            var finishBtn = document.getElementById("button_finish");
-            finishBtn.onclick = function() {
-                modal.style.display = "none"
-            }
+});
+    //END Aksi Insert
 </script>
 </body>
 </html>

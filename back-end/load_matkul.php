@@ -4,6 +4,7 @@
     $sql_dosen =    //"SELECT * FROM kelas";
     
                     "SELECT 
+                        id_mk,
                         nama_mk
                     FROM mata_kuliah
                     ORDER BY nama_mk";
@@ -12,7 +13,7 @@
     //loop-print table content
     while($row_dosen = mysqli_fetch_array($result)){
         echo ("
-        <option value='".$row_dosen['nama_mk']."'>". $row_dosen['nama_mk']."</option>
+        <option value='".$row_dosen['id_mk']."'>". $row_dosen['nama_mk']."</option>
         ");
     }
     
