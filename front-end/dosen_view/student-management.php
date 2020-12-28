@@ -270,97 +270,10 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <!-- Loading Data -->
                                         <?php
                                             require('../../back-end/cek_absen_st_management.php');
                                         ?>
-                                        <!-- <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>18081012031</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh@gmail.com</td>
-                                            <td>32%</td>
-                                            <td>Aktif</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Garrett Winters</td>
-                                            <td>18081012394</td>
-                                            <td>Accountant</td>
-                                            <td>Tokyo@gmail.com</td>
-                                            <td>17%</td>
-                                            <td>Aktif</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Ashton Cox</td>
-                                            <td>18081012304</td>
-                                            <td>Junior Technical Author</td>
-                                            <td>San_Francisco@gmail.com</td>
-                                            <td>86%</td>
-                                            <td>Aktif</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Cedric Kelly</td>
-                                            <td>18081019384</td>
-                                            <td>Senior Javascript Developer</td>
-                                            <td>Edinburgh@gmail.com</td>
-                                            <td>43%</td>
-                                            <td>Aktif</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Airi Satou</td>
-                                            <td>18081012394</td>
-                                            <td>Accountant</td>
-                                            <td>Tokyo2_@gmail.com</td>
-                                            <td>16%</td>
-                                            <td>Aktif</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Dimas Avtur</td>
-                                            <td>18081012234</td>
-                                            <td>Informatika</td>
-                                            <td>DimAvtur@gmail.com</td>
-                                            <td>11%</td>
-                                            <td>Non-Aktif</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Fahmi Wibu</td>
-                                            <td>18081012442</td>
-                                            <td>Informatika</td>
-                                            <td>FWib@gmail.com</td>
-                                            <td>12%</td>
-                                            <td>Non-Aktif</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Oso</td>
-                                            <td>18081011230</td>
-                                            <td>Informatika</td>
-                                            <td>Reza_Oso@gmail.com</td>
-                                            <td>42%</td>
-                                            <td>Aktif</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Elang EMP</td>
-                                            <td>18081012341</td>
-                                            <td>Informatika</td>
-                                            <td>Elang_EMP@gmail.com</td>
-                                            <td>22%</td>
-                                            <td>Aktif</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Faisal Juki</td>
-                                            <td>18081012202</td>
-                                            <td>Informatika</td>
-                                            <td>FJuki@gmail.com</td>
-                                            <td>32%</td>
-                                            <td>Non-Aktif</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Cak Prat</td>
-                                            <td>18081012243</td>
-                                            <td>Informatika</td>
-                                            <td>CPrat@gmail.com</td>
-                                            <td>92%</td>
-                                            <td>Aktif</td>
-                                        </tr> -->
                                     </tbody>
                                 </table>
                             </div>

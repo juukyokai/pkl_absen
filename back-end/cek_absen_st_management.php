@@ -64,16 +64,6 @@
     $result = $conn->query($default_query);
     //loop-print table content
     while($row_absen = mysqli_fetch_array($result)){
-        // echo ("
-        //         <tr>
-        //             <td>". $row_absen['nama_mhs'] ."</td>
-        //             <td>". $row_absen['npm_mhs'] ."</td>
-        //             <td>". $row_absen['nama_mk'] ." - ". $row_absen['kode_nama_kelas'] ."</td>
-        //             <td>". $row_absen['email_mhs'] ."</td>
-        //             <td>". ($abs_total*100) ."%</td>
-        //             <td>". $ket ."</td>
-        //         </tr>
-        //         ");
         $prep_query= prepare_query($row_absen['id_mhs'],$kelas);
         processing_absen(
             $prep_query
