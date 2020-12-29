@@ -37,43 +37,21 @@
         <h1>List Mahasiswa</h1>
         <?php
             require('../../back-end/load_mk.php');
-            print_mk($kelas);
+            print_mk($kelas); //nama matkul dan kode nama kelas
         ?>
-        <table border="1">
+        <table border="1" style="width:100%">
+          <tr>
+            <th>No</th>
+            <th>Nama</th>
+            <th>NPM</th>
+            <th>Email</th>
+            <th>Absen</th>
+            <th>Status</th>
+          </tr>
           <?php
             require('../../back-end/load_mhs_view.php');
-            print_mhs_all($kelas);
+            print_mhs_all($kelas);  // nama absen seluruh mhs dalam kelas
           ?>
-          <!-- <tr>
-            <td>No</td>
-            <td>Nama</td>
-            <td>NPM</td>
-            <td>Status</td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>M. Faisal R.</td>
-            <td>18081010001</td>
-            <td>Aktif</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Elang Eka M. P.</td>
-            <td>18081010068</td>
-            <td>Aktif</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>Dimas Amrulloh</td>
-            <td>18081010125</td>
-            <td>Aktif</td>
-          </tr>
-          <tr>
-            <td>4</td>
-            <td>Fahmi A.D.</td>
-            <td>18081010128</td>
-            <td>Aktif</td>
-          </tr>                                          -->
         </table>
       </div>
     </div>
