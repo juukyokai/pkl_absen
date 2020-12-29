@@ -264,6 +264,7 @@
                                 </button>
                             </div>
                             <div class="card-body">
+                                <div id="tabel_tampil">
                                 <table id="bootstrap-data-table" class="table table-striped table-bordered">               
                                     <thead>
                                         <tr>
@@ -278,12 +279,12 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        
                                             <?php
                                                 require('back-end/tampil_kelas.php');
                                             ?>
                                     </tbody>
                                 </table>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -363,16 +364,14 @@
                                         </div>
                                         <small class="form-text text-muted">ex. 19.00.00</small>
                                     </div>
-                                        <input type="submit" name="insert" id="insert" value="Insert" class="btn btn-success" />
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                        <input type="submit" name="insert" id="insert" value="Insert" class="btn btn-success"/>
+                                    </div> 
                                     </form>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <button type="button" class="btn btn-primary" id="button_save">Confirm</button>
-                        <button type="button" class="btn btn-primary" data-dismiss="modal">Selesai</button>
                     </div>
                 </div>
             </div>
@@ -470,10 +469,7 @@
                     </div>
                     <div class="modal-body">
                         <p>
-                            There are three species of zebras: the plains zebra, the mountain zebra and the Grévy's zebra. The plains zebra
-                            and the mountain zebra belong to the subgenus Hippotigris, but Grévy's zebra is the sole species of subgenus
-                            Dolichohippus. The latter resembles an ass, to which it is closely related, while the former two are more
-                            horse-like. All three belong to the genus Equus, along with other living equids.
+                            Apakah anda ingin menghapus kelas?
                         </p>
                     </div>
                     <div class="modal-footer">
@@ -579,8 +575,9 @@
         $('#insert').val("Inserting");  
         },  
         success:function(data){  
-        $('#insert_form')[0].reset();
-        $('#employee_table').html(data);  
+        $('#insert_form')[0].reset();  
+        $('#tambahkelas').modal('hide');  
+        $('#tabel_tampil').html(data); 
         }  
     });  
     }  
