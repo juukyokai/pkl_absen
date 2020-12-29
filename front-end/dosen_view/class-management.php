@@ -331,13 +331,6 @@
                                         <small class="form-text text-muted">ex. Pemrograman Web</small>
                                     </div>
                                     <div class="form-group">
-                                        <label class=" form-control-label">Masukkan SKS ...</label>
-                                        <div class="input-group">
-                                            <input id="sks" class="form-control" type="text" name="sks" placeholder="Masukkan Kode Nama Kelas">
-                                        </div>
-                                        <small class="form-text text-muted">ex. 3</small>
-                                    </div>
-                                    <div class="form-group">
                                         <label class=" form-control-label">Dosen Kelas</label>
                                         <div class="input-group">
                                             <select id="id_dosen" name="id_dosen" data-placeholder="Pilih Dosen ..." multiple class="standardSelect">
@@ -547,10 +540,6 @@
     else if($('#id_mk').val() == '')  
     {  
     alert("Mohon Isi id_mk");  
-    }
-    else if($('#sks').val() == '')  
-    {  
-    alert("Mohon Isi sks");  
     }
     else if($('#id_dosen').val() == '')  
     {  
