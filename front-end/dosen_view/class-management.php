@@ -304,65 +304,63 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <div>
-                            <div class="card">
-                                <div class="card-header">
-                                    <strong>FAKULTAS ILMU KOMPUTER</strong>
+                        <div class="card">
+                            <div class="card-header">
+                                <strong>FAKULTAS ILMU KOMPUTER</strong>
+                            </div>
+                            <div class="card-body card-block" id="fupForm">
+                            <form method="POST" id="insert_form">
+                                <div class="form-group">
+                                    <label class=" form-control-label">Kode Nama Kelas</label>
+                                    <div class="input-group">
+                                        <input id="kode_nama_kelas" class="form-control" type="text" name="kode_nama_kelas" placeholder="Masukkan Kode Nama Kelas">
+                                    </div>
+                                    <small class="form-text text-muted">ex. G068</small>
                                 </div>
-                                <div class="card-body card-block" id="fupForm">
-                                <form method="POST" id="insert_form">
-                                    <div class="form-group">
-                                        <label class=" form-control-label">Kode Nama Kelas</label>
-                                        <div class="input-group">
-                                            <input id="kode_nama_kelas" class="form-control" type="text" name="kode_nama_kelas" placeholder="Masukkan Kode Nama Kelas">
-                                        </div>
-                                        <small class="form-text text-muted">ex. G068</small>
+                                <div class="form-group">
+                                    <label class=" form-control-label">Mata Kuliah</label>
+                                    <div class="input-group">
+                                        <select id="id_mk" name="id_mk" data-placeholder="Pilih Matkul ..." multiple class="standardSelect">
+                                            <option value="" label="default"></option>
+                                            <?php
+                                            require('back-end/load_matkul.php');
+                                            ?>
+                                        </select>
                                     </div>
-                                    <div class="form-group">
-                                        <label class=" form-control-label">Mata Kuliah</label>
-                                        <div class="input-group">
-                                            <select id="id_mk" name="id_mk" data-placeholder="Pilih Matkul ..." multiple class="standardSelect">
-                                                <option value="" label="default"></option>
-                                                <?php
-                                                require('back-end/load_matkul.php');
-                                                ?>
-                                            </select>
-                                        </div>
-                                        <small class="form-text text-muted">ex. Pemrograman Web</small>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class=" form-control-label">Dosen Kelas</label>
-                                        <div class="input-group">
-                                            <select id="id_dosen" name="id_dosen" data-placeholder="Pilih Dosen ..." multiple class="standardSelect">
-                                                <option value="" label="default"></option>
-                                                <?php
-                                                require('back-end/load_dosen.php');
-                                                ?>
-                                            </select>
-                                        </div>
-                                        <small class="form-text text-muted">ex. Parlika</small>
-                                    </div>
-                                
-                                    <div class="form-group">
-                                        <label class=" form-control-label">Hari Kelas</label>
-                                        <div class="input-group">
-                                            <input id="hari_kelas" class="form-control" type="text" name="hari_kelas" placeholder="Masukkan Hari Kelas ...">
-                                        </div>
-                                        <small class="form-text text-muted">ex. Senin</small>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="jam" class=" form-control-label">Jam Kelas</label>
-                                        <div class="input-group">
-                                            <input id="jam_kelas" class="form-control" type="text" name="jam_kelas" placeholder="Masukkan Jam Kelas ...">
-                                        </div>
-                                        <small class="form-text text-muted">ex. 19.00.00</small>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                        <input type="submit" name="insert" id="insert" value="Insert" class="btn btn-success"/>
-                                    </div> 
-                                    </form>
+                                    <small class="form-text text-muted">ex. Pemrograman Web</small>
                                 </div>
+                                <div class="form-group">
+                                    <label class=" form-control-label">Dosen Kelas</label>
+                                    <div class="input-group">
+                                        <select id="id_dosen" name="id_dosen" data-placeholder="Pilih Dosen ..." multiple class="standardSelect">
+                                            <option value="" label="default"></option>
+                                            <?php
+                                            require('back-end/load_dosen.php');
+                                            ?>
+                                        </select>
+                                    </div>
+                                    <small class="form-text text-muted">ex. Parlika</small>
+                                </div>
+                            
+                                <div class="form-group">
+                                    <label class=" form-control-label">Hari Kelas</label>
+                                    <div class="input-group">
+                                        <input id="hari_kelas" class="form-control" type="text" name="hari_kelas" placeholder="Masukkan Hari Kelas ...">
+                                    </div>
+                                    <small class="form-text text-muted">ex. Senin</small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="jam" class=" form-control-label">Jam Kelas</label>
+                                    <div class="input-group">
+                                        <input id="jam_kelas" class="form-control" type="text" name="jam_kelas" placeholder="Masukkan Jam Kelas ...">
+                                    </div>
+                                    <small class="form-text text-muted">ex. 19.00.00</small>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                    <input type="submit" name="insert" id="insert" value="Insert" class="btn btn-success"/>
+                                </div> 
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -560,13 +558,13 @@
         url:"back-end/tambahkelas.php",  
         method:"POST",  
         data:$('#insert_form').serialize(),  
-        beforeSend:function(){  
+        beforeSend:function(){
         $('#insert').val("Inserting");  
         },  
         success:function(data){  
         $('#insert_form')[0].reset();  
-        $('#tambahkelas').modal('hide');  
-        $('#tabel_tampil').html(data); 
+        $('#tambahkelas').modal('hide');
+        $('#tabel_tampil').html(data);
         }  
     });  
     }  
