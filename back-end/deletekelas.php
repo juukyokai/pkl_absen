@@ -19,7 +19,7 @@ if(isset($_POST["id_kelas"]))
 			dosen.nama_dosen,
 			mata_kuliah.nama_mk,
 			mata_kuliah.sks FROM kelas,dosen, mata_kuliah
-            where kelas.id_mk=mata_kuliah.id_mk && kelas.id_dosen=dosen.id_dosen ORDER BY kode_nama_kelas DESC";
+            where kelas.id_mk=mata_kuliah.id_mk && kelas.id_dosen=dosen.id_dosen ORDER BY kode_nama_kelas";
 			$result = $conn->query($select_query);
 			$output .= '
 			<table id="bootstrap-data-table" class="table table-striped table-bordered">               
@@ -32,7 +32,8 @@ if(isset($_POST["id_kelas"]))
                                             <th>Dosen</th>
                                             <th>Hari</th>
                                             <th>Jam</th>
-                                            <th>Action</th>
+                                            <th>Edit</th>
+                                            <th>Hapus</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -47,10 +48,16 @@ if(isset($_POST["id_kelas"]))
 						<td>' . $row_kelas["hari_kelas"] . '</td>
 						<td>' . $row_kelas["jam_kelas"] . '</td>
 						<td>
-							<input data-toggle="modal" type="button" name="view" value="Lihat Detail" id="' . $row_kelas["id_kelas"] . '" class="btn btn-primary mb-1" data-target="#editkelas" />
+							<button type="button" class="btn btn-primary mb-1" data-toggle="modal" data-target=#"editkelas">
+								<i class="fa fa-pencil"></i>
+								Edit Kelas
+							</button>
 						</td>
 						<td>
-							<input data-toggle="modal" type="button" name="view" value="Lihat Detail" id="' . $row_kelas["id_kelas"] . '" class="btn btn-danger mb-1" data-target="#hapuskelas" />
+							<button type="button" class="btn btn-danger mb-1" data-toggle="modal" data-target="#hapuskelas">
+								<i class="fa fa-minus-circle"></i>
+								Hapus Kelas
+							</button>
 						</td>
 					</tr>
 			';

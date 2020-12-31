@@ -1,7 +1,7 @@
 <?php  
 //index.php
 require('db_connect.php');
-$query = "SELECT * FROM kelas ORDER BY id_kelas DESC";
+$query = "SELECT kelas.id_kelas FROM kelas";
 $result = $conn->query($query);
  ?>
 
@@ -473,7 +473,10 @@ $result = $conn->query($query);
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <input data-toggle="modal" type="button" name="delete" value="Hapus" class="btn btn-danger mb-1" data-target="#hapuskelas" onclick="Delete(<?php echo $data['id_kelas'] ?>)" />
+                        <?php
+                        $row = mysqli_fetch_array($result)
+                        ?>
+                        <input data-toggle="modal" type="button" name="delete" value="Hapus" id="<?php echo $row["id_kelas"]; ?>" class="btn btn-danger mb-1 hapuskelas" data-target="#hapuskelas" />
                     </div>
                 </div>
             </div>
@@ -577,15 +580,17 @@ $result = $conn->query($query);
     });
      //END Aksi Insert
 
-    function Delete(hapus){
+     $(document).on('click', '.hapuskelas', function(){
+        var id_kelas = $(this).attr("id_kelas");
         $.ajax({
-            type: "GET",
-            url: "delete_kelas?id_kelas=" +hapus,
-            success: function(data){
-                $('#tabel_tampil').html(data);
-            }
+        url:"back-end/deletekelas.php",
+        method:"POST",
+        data:{id_kelas:id_kelas},
+        success:function(data){
+        $('#tabel_tampil').html(data);  
+        }
         });
-    }
+    });
     });
    
 </script>
