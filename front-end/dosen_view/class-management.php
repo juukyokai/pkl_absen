@@ -1,3 +1,10 @@
+<?php  
+//index.php
+require('db_connect.php');
+$query = "SELECT * FROM kelas ORDER BY id_kelas DESC";
+$result = $conn->query($query);
+ ?>
+
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
@@ -275,7 +282,8 @@
                                             <th>Dosen</th>
                                             <th>Hari</th>
                                             <th>Jam</th>
-                                            <th>Action</th>
+                                            <th>Edit</th>
+                                            <th>Hapus</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -357,8 +365,8 @@
                                     <small class="form-text text-muted">ex. 19.00.00</small>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                    <input type="submit" name="insert" id="insert" value="Insert" class="btn btn-success"/>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Selesai/Cancel</button>
+                                    <input type="submit" name="insert" id="insert" value="Confirm" class="btn btn-success" data-target="#tabel_tampil"/>
                                 </div> 
                                 </form>
                             </div>
@@ -465,7 +473,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <button type="button" class="btn btn-primary">Confirm</button>
+                        <input data-toggle="modal" type="button" name="delete" value="Hapus" class="btn btn-danger mb-1" data-target="#hapuskelas" onclick="Delete(<?php echo $data['id_kelas'] ?>)" />
                     </div>
                 </div>
             </div>
@@ -525,7 +533,6 @@
             });
         });
     </script>
-    <!-- Tambah Kelas -->
     <script>
     $(document).ready(function(){
     // Begin Aksi Insert
@@ -562,15 +569,25 @@
         $('#insert').val("Inserting");  
         },  
         success:function(data){  
-        $('#insert_form')[0].reset();  
-        $('#tambahkelas').modal('hide');
+        $('#insert_form')[0].reset();
         $('#tabel_tampil').html(data);
         }  
     });  
     }  
     });
-});
-    //END Aksi Insert
+     //END Aksi Insert
+
+    function Delete(hapus){
+        $.ajax({
+            type: "GET",
+            url: "delete_kelas?id_kelas=" +hapus,
+            success: function(data){
+                $('#tabel_tampil').html(data);
+            }
+        });
+    }
+    });
+   
 </script>
 </body>
 </html>

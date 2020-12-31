@@ -12,7 +12,7 @@
                         mata_kuliah.nama_mk,
                         mata_kuliah.sks
                     FROM kelas,dosen, mata_kuliah
-                    where kelas.id_mk=mata_kuliah.id_mk && kelas.id_dosen=dosen.id_dosen";
+                    where kelas.id_mk=mata_kuliah.id_mk && kelas.id_dosen=dosen.id_dosen ORDER BY kode_nama_kelas";
                     
     $result = $conn->query($sql_kelas);
     //loop-print table content
@@ -29,6 +29,8 @@
                     <i class='fa fa-pencil'></i>
                     Edit Kelas
                 </button>
+            </td>
+            <td>
                 <button type='button' class='btn btn-danger mb-1' data-toggle='modal' data-target='#hapuskelas'>
                     <i class='fa fa-minus-circle'></i>
                     Hapus Kelas

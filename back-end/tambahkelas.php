@@ -36,7 +36,7 @@
 			dosen.nama_dosen,
 			mata_kuliah.nama_mk,
 			mata_kuliah.sks FROM kelas,dosen, mata_kuliah
-            where kelas.id_mk=mata_kuliah.id_mk && kelas.id_dosen=dosen.id_dosen ORDER BY kode_nama_kelas DESC";
+            where kelas.id_mk=mata_kuliah.id_mk && kelas.id_dosen=dosen.id_dosen ORDER BY kode_nama_kelas";
 			$result = $conn->query($select_query);
 			$output .= '
 			<table id="bootstrap-data-table" class="table table-striped table-bordered">               
@@ -65,6 +65,7 @@
 						<td>' . $row_kelas["jam_kelas"] . '</td>
 						<td>
 							<input data-toggle="modal" type="button" name="view" value="Lihat Detail" id="' . $row_kelas["id_kelas"] . '" class="btn btn-primary mb-1" data-target="#editkelas" />
+							<input data-toggle="modal" type="button" name="view" value="Lihat Detail" id="' . $row_kelas["id_kelas"] . '" class="btn btn-danger mb-1" data-target="#hapuskelas" />
 						</td>
 					</tr>
 			';
