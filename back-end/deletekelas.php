@@ -1,13 +1,14 @@
 <?php
- 
- require('db_connect.php');;
-if(isset($_POST["id_kelas"]))
-{
- $output = '';
-    $query = "
-    DELETE FROM kelas where id_kelas = '".$_POST["id_kelas"]."'
-    ";
 
+ require('db_connect.php');
+if(isset($_GET["id_kelas"]))
+{
+	
+ $output = '';
+	$query = " DELETE FROM kelas WHERE kelas.id_kelas = '".$_GET["id_kelas"]."'
+	";
+	
+	
     if($conn->query($query))
 			{
             $output .= '<label class="text-success">Data Berhasil Dihapus</label>';
@@ -54,7 +55,7 @@ if(isset($_POST["id_kelas"]))
 							</button>
 						</td>
 						<td>
-							<button type="button" class="btn btn-danger mb-1" data-toggle="modal" data-target="#hapuskelas">
+							<button type="button" id="<?php echo $row_kelas["id_kelas"]; ?>" class="btn btn-danger mb-1" data-toggle="modal" data-target="#hapuskelas">
 								<i class="fa fa-minus-circle"></i>
 								Hapus Kelas
 							</button>
@@ -64,7 +65,7 @@ if(isset($_POST["id_kelas"]))
 			}
 			$output .= '</table>';
 			}else{
-				$output .= mysqli_error($connect);
+				$output .= mysqli_error($conn);
 			}
 			echo $output;
 }

@@ -28,7 +28,6 @@
 			<table id="bootstrap-data-table" class="table table-striped table-bordered">               
                                     <thead>
                                         <tr>
-                                            
                                             <th>Nama Kelas</th>
                                             <th>Mata Kuliah</th>
                                             <th>SKS</th>
@@ -57,7 +56,7 @@
 							</button>
 						</td>
 						<td>
-							<button type="button" class="btn btn-danger mb-1" data-toggle="modal" data-target="#hapuskelas">
+							<button type="button" id="<?php echo $row_kelas["id_kelas"]; ?>" class="btn btn-danger mb-1" data-toggle="modal" data-target="#hapuskelas">
 								<i class="fa fa-minus-circle"></i>
 								Hapus Kelas
 							</button>

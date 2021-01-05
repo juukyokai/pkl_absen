@@ -1,8 +1,18 @@
 <?php  
 //index.php
 require('db_connect.php');
-$query = "SELECT kelas.id_kelas FROM kelas";
+$query = "SELECT 
+kelas.id_kelas,  
+kelas.kode_nama_kelas,
+kelas.hari_kelas, 
+kelas.jam_kelas,
+dosen.nama_dosen,
+mata_kuliah.nama_mk,
+mata_kuliah.sks
+FROM kelas,dosen, mata_kuliah
+where kelas.id_mk=mata_kuliah.id_mk && kelas.id_dosen=dosen.id_dosen ORDER BY kode_nama_kelas";
 $result = $conn->query($query);
+$row = mysqli_fetch_array($result)
  ?>
 
 <!doctype html>
@@ -472,11 +482,8 @@ $result = $conn->query($query);
                         </p>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <?php
-                        $row = mysqli_fetch_array($result)
-                        ?>
-                        <input data-toggle="modal" type="button" name="delete" value="Hapus" id="<?php echo $row["id_kelas"]; ?>" class="btn btn-danger mb-1 hapuskelas" data-target="#hapuskelas" />
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Selesai/Cancel</button>
+                        <input type="button" name="delete" value="Hapus" id="<?php echo $row["id_kelas"]; ?>" class="btn btn-danger mb-1 hapus_data" />
                     </div>
                 </div>
             </div>
@@ -569,7 +576,7 @@ $result = $conn->query($query);
         method:"POST",  
         data:$('#insert_form').serialize(),  
         beforeSend:function(){
-        $('#insert').val("Inserting");  
+        $('#insert').val("Confirm");  
         },  
         success:function(data){  
         $('#insert_form')[0].reset();
@@ -578,17 +585,16 @@ $result = $conn->query($query);
     });  
     }  
     });
-     //END Aksi Insert
 
-     $(document).on('click', '.hapuskelas', function(){
-        var id_kelas = $(this).attr("id_kelas");
+    $(document).on('click', '.hapus_data', function(){
+    var id_kelas = $(this).attr("id_kelas");
         $.ajax({
-        url:"back-end/deletekelas.php",
-        method:"POST",
-        data:{id_kelas:id_kelas},
-        success:function(data){
-        $('#tabel_tampil').html(data);  
-        }
+            url:"back-end/deletekelas.php?id_kelas=<?php echo $row['id_kelas']?>",
+            method:"GET",
+            data:{id_kelas:id_kelas},
+            success:function(data){
+                $('#tabel_tampil').html(data);  
+            }
         });
     });
     });
