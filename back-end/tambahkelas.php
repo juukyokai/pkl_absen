@@ -15,7 +15,7 @@
 			{
 			
 			}else{
-				$output .= mysqli_error($connect);
+				$output .= mysqli_error($conn);
 			}
 			echo $output;
 		}

@@ -280,7 +280,6 @@
                                             <tbody>
                                                 <?php
                                                     require('back-end/load_tables.php');
-
                                                 ?>
                                             </tbody>
                                         </table>

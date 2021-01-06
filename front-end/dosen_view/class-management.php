@@ -423,7 +423,7 @@ $row = mysqli_fetch_array($result)
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <button type="button" class="btn btn-primary">Confirm</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="">Confirm</button>
                     </div>
                 </div>
             </div>
@@ -497,7 +497,7 @@ $row = mysqli_fetch_array($result)
     $(document).ready(function(){
     // Begin Aksi Insert
     $('#insert_form').on("submit", function(event){  
-    event.preventDefault();  
+    event.preventDefault(); 
     if($('#kode_nama_kelas').val() == "")  
     {  
     alert("Mohon Isi Kode Nama Kelas ");  
