@@ -1,6 +1,6 @@
 <?php  
 //index.php
-require('db_connect.php');
+require('access/db_connect.php');
 $query = "SELECT 
 kelas.id_kelas,  
 kelas.kode_nama_kelas,
@@ -562,14 +562,7 @@ $row = mysqli_fetch_array($result)
                         $.ajax({  
                             url:"back-end/tambahkelas.php",  
                             method:"POST",  
-                            data:$('#insert_form').serialize(),  
-                            beforeSend:function(){
-                                $('#insert').val("Confirm");  
-                            },  
-                            success:function(data){  
-                                $('#insert_form')[0].reset();
-                                $('#tabel_tampil').html(data);
-                            }  
+                            
                         });  
                     }  
     });
