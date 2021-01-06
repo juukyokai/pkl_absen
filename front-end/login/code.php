@@ -3,21 +3,31 @@ session_start();
 require('db_connect.php');
 // $connect = mysqli_connect("localhost","root","","pkl");
 
-if(isset($_POST['button'])){
-    $id_komplemen = $_POST['id_komplemen']; 
+if(isset($_POST['masuk'])){
+    //$id_komplemen = $_POST['id_komplemen'];
+    //$tipe_user = $_POST['tipe_user'];
     $username = $_POST['username'];
     $password = $_POST['password'];
-    $tipe_user = $_POST['tipe_user'];    
     
     
-    $query = "SELECT * FROM user WHERE username = '$username' AND password = '$password'";
-    $query_run = $conn->query($query);
-
-    if(mysqli_fetch_array($query_run)){
-        header('Location:../mahasiswa_view/index.html');
+    
+    $query = "SELECT username,id_komplemen, tipe_user FROM user WHERE username = '$username' AND password = '$password'";
+    $result = $conn->query($query);
+    
+    if($row_login = mysqli_fetch_array($result)){
+        if($row_login['tipe_user'] == 1 || $row_login['tipe_user'] == 0){
+            $_SESSION['username'] = $username;
+            $_SESSION['id_komplemen'] = $row_login['id_komplemen'];
+            header('Location: ../dosen_view/index.php');
+            exit;
+        }else if($row_login['tipe_user'] == 2){
+            header('Location: ../mahasiswa_view/index.html');
+            exit;
+        }
     }
     else{
         header('Location:index.php');
+        exit;
     }
 
 }

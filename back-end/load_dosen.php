@@ -16,7 +16,4 @@
         <option value='".$row_dosen['id_dosen']."'>". $row_dosen['nama_dosen']."</option>
         ");
     }
-    
-    
-
 ?>

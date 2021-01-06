@@ -41,7 +41,7 @@ session_start();
     <label for="exampleInputPassword1">Password</label>
     <input type="password" class="form-control" name="password" id="exampleInputPassword1">
   </div>
-  <button type="submit" class="btn btn-warning" name="button">Masuk</button>
+  <button type="submit" class="btn btn-warning" name="masuk">Masuk</button>
 </form>
 </div>
 
