@@ -1,3 +1,20 @@
+<?php  
+//index.php
+require('db_connect.php');
+$query = "SELECT 
+kelas.id_kelas,  
+kelas.kode_nama_kelas,
+kelas.hari_kelas, 
+kelas.jam_kelas,
+dosen.nama_dosen,
+mata_kuliah.nama_mk,
+mata_kuliah.sks
+FROM kelas,dosen, mata_kuliah
+where kelas.id_mk=mata_kuliah.id_mk && kelas.id_dosen=dosen.id_dosen ORDER BY kode_nama_kelas";
+$result = $conn->query($query);
+$row = mysqli_fetch_array($result)
+ ?>
+
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
@@ -275,7 +292,8 @@
                                             <th>Dosen</th>
                                             <th>Hari</th>
                                             <th>Jam</th>
-                                            <th>Action</th>
+                                            <th>Edit</th>
+                                            <th>Hapus</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -357,8 +375,8 @@
                                     <small class="form-text text-muted">ex. 19.00.00</small>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                    <input type="submit" name="insert" id="insert" value="Insert" class="btn btn-success"/>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Selesai/Cancel</button>
+                                    <input type="submit" name="insert" id="insert" value="Confirm" class="btn btn-success" data-target="#tabel_tampil"/>
                                 </div> 
                                 </form>
                             </div>
@@ -464,8 +482,8 @@
                         </p>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <button type="button" class="btn btn-primary">Confirm</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Selesai/Cancel</button>
+                        <input type="button" name="delete" value="Hapus" id="<?php echo $row["id_kelas"]; ?>" class="btn btn-danger mb-1 hapus_data" />
                     </div>
                 </div>
             </div>
@@ -525,7 +543,6 @@
             });
         });
     </script>
-    <!-- Tambah Kelas -->
     <script>
     $(document).ready(function(){
     // Begin Aksi Insert
@@ -547,18 +564,29 @@
                             method:"POST",  
                             data:$('#insert_form').serialize(),  
                             beforeSend:function(){
-                            $('#insert').val("Inserting");  
+                                $('#insert').val("Confirm");  
                             },  
                             success:function(data){  
-                                $('#insert_form')[0].reset(); 
-                                $('#tambahkelas').modal('hide');
+                                $('#insert_form')[0].reset();
                                 $('#tabel_tampil').html(data);
                             }  
                         });  
                     }  
     });
-});
-    //END Aksi Insert
+
+    $(document).on('click', '.hapus_data', function(){
+    var id_kelas = $(this).attr("id_kelas");
+        $.ajax({
+            url:"back-end/deletekelas.php?id_kelas=<?php echo $row['id_kelas']?>",
+            method:"GET",
+            data:{id_kelas:id_kelas},
+            success:function(data){
+                $('#tabel_tampil').html(data);  
+            }
+        });
+    });
+    });
+   
 </script>
 </body>
 </html>
