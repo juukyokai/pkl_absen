@@ -443,7 +443,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <button type="button" class="btn btn-primary">Confirm</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="">Confirm</button>
                     </div>
                 </div>
             </div>
@@ -531,43 +531,31 @@
     // Begin Aksi Insert
     $('#insert_form').on("submit", function(event){  
     event.preventDefault();  
-    if($('#kode_nama_kelas').val() == "")  
-    {  
-    alert("Mohon Isi Kode Nama Kelas ");  
-    }  
-    else if($('#id_mk').val() == '')  
-    {  
-    alert("Mohon Isi id_mk");  
-    }
-    else if($('#id_dosen').val() == '')  
-    {  
-    alert("Mohon Isi dosen");  
-    }
-    else if($('#hari_kelas').val() == '')  
-    {  
-    alert("Mohon Isi Hari Kelas");  
-    }
-    else if($('#jam_kelas').val() == '')  
-    {  
-    alert("Mohon Isi Jam Kelas");  
-    }
-    
-    else  
-    {  
-    $.ajax({  
-        url:"back-end/tambahkelas.php",  
-        method:"POST",  
-        data:$('#insert_form').serialize(),  
-        beforeSend:function(){
-        $('#insert').val("Inserting");  
-        },  
-        success:function(data){  
-        $('#insert_form')[0].reset();  
-        $('#tambahkelas').modal('hide');
-        $('#tabel_tampil').html(data);
-        }  
-    });  
-    }  
+    if($('#kode_nama_kelas').val() == ""){  
+        alert("Mohon Isi Kode Nama Kelas ");  
+    }else if($('#id_mk').val() == ''){  
+            alert("Mohon Isi id_mk");  
+        }else if($('#id_dosen').val() == ''){  
+                alert("Mohon Isi dosen");  
+            }else if($('#hari_kelas').val() == ''){  
+                    alert("Mohon Isi Hari Kelas");  
+                }else if($('#jam_kelas').val() == ''){  
+                        alert("Mohon Isi Jam Kelas");  
+                    }else{  
+                        $.ajax({  
+                            url:"back-end/tambahkelas.php",  
+                            method:"POST",  
+                            data:$('#insert_form').serialize(),  
+                            beforeSend:function(){
+                            $('#insert').val("Inserting");  
+                            },  
+                            success:function(data){  
+                                $('#insert_form')[0].reset(); 
+                                $('#tambahkelas').modal('hide');
+                                $('#tabel_tampil').html(data);
+                            }  
+                        });  
+                    }  
     });
 });
     //END Aksi Insert
