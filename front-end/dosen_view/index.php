@@ -1,5 +1,11 @@
 <?php
     session_start();
+    //Cek apakah user sudah login atau belum
+    if(!isset($_SESSION['login']))
+    {
+        header("Location: login.php");
+        exit;
+    }
 ?>
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
@@ -80,8 +86,8 @@
                     </li>
                     <li class="menu-title">Manajemen Pengajaran</li><!-- /.menu-title -->
                     <li class="">
-                        <a href="front-end/dosen_view/class-management.html"><i class="menu-icon fa fa-calendar"></i>Mata Kuliah</a>
-                        <a href="front-end/dosen_view/student-management.html"><i class="menu-icon fa fa-users"></i>Peserta Didik</a>
+                        <a href="class-management.php"><i class="menu-icon fa fa-calendar"></i>Mata Kuliah</a>
+                        <a href="student-management.php"><i class="menu-icon fa fa-users"></i>Peserta Didik</a>
                     </li>
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Components</a>

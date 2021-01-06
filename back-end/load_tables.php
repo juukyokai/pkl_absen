@@ -1,5 +1,6 @@
 <?php
     require('db_connect.php');
+    $id = $_SESSION['id_komplemen'];
     //preparing query
     $sql_kelas =    //"SELECT * FROM kelas";
     
@@ -13,7 +14,7 @@
                         mata_kuliah.status_mk,
                         dosen.nama_dosen
                     FROM kelas, mata_kuliah, dosen
-                    WHERE kelas.id_mk=mata_kuliah.id_mk AND kelas.id_dosen=dosen.id_dosen AND dosen.id_dosen=3
+                    WHERE kelas.id_mk=mata_kuliah.id_mk AND kelas.id_dosen=dosen.id_dosen AND dosen.id_dosen=$id
                     ORDER BY kelas.id_kelas";
                     
     $result = $conn->query($sql_kelas);

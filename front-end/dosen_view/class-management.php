@@ -1,18 +1,19 @@
-<?php  
-//index.php
-require('access/db_connect.php');
-$query = "SELECT 
-kelas.id_kelas,  
-kelas.kode_nama_kelas,
-kelas.hari_kelas, 
-kelas.jam_kelas,
-dosen.nama_dosen,
-mata_kuliah.nama_mk,
-mata_kuliah.sks
-FROM kelas,dosen, mata_kuliah
-where kelas.id_mk=mata_kuliah.id_mk && kelas.id_dosen=dosen.id_dosen ORDER BY kode_nama_kelas";
-$result = $conn->query($query);
-$row = mysqli_fetch_array($result)
+<?php 
+    session_start();
+    //index.php
+    // require('access/db_connect.php');
+    // $query = "SELECT 
+    // kelas.id_kelas,  
+    // kelas.kode_nama_kelas,
+    // kelas.hari_kelas, 
+    // kelas.jam_kelas,
+    // dosen.nama_dosen,
+    // mata_kuliah.nama_mk,
+    // mata_kuliah.sks
+    // FROM kelas,dosen, mata_kuliah
+    // where kelas.id_mk=mata_kuliah.id_mk && kelas.id_dosen=dosen.id_dosen ORDER BY kode_nama_kelas";
+    // $result = $conn->query($query);
+    // $row = mysqli_fetch_array($result)
  ?>
 
 <!doctype html>
@@ -38,10 +39,10 @@ $row = mysqli_fetch_array($result)
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/css/flag-icon.min.css">
-    <link rel="stylesheet" href="front-end/dosen_view/assets/css/cs-skin-elastic.css">
-    <link rel="stylesheet" href="front-end/dosen_view/assets/css/lib/datatable/dataTables.bootstrap.min.css">
-    <link rel="stylesheet" href="front-end/dosen_view/assets/css/style.css">
-    <link rel="stylesheet" href="front-end/dosen_view/assets/css/lib/chosen/chosen.min.css">
+    <link rel="stylesheet" href="assets/css/cs-skin-elastic.css">
+    <link rel="stylesheet" href="assets/css/lib/datatable/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/lib/chosen/chosen.min.css">
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 
@@ -142,8 +143,8 @@ $row = mysqli_fetch_array($result)
         <header id="header" class="header">
             <div class="top-left">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="./"><img src="front-end/dosen_view/images/logo.png" alt="Logo"></a>
-                    <a class="navbar-brand hidden" href="./"><img src="front-end/dosen_view/images/logo2.png" alt="Logo"></a>
+                    <a class="navbar-brand" href="./"><img src="images/logo.png" alt="Logo"></a>
+                    <a class="navbar-brand hidden" href="./"><img src="images/logo2.png" alt="Logo"></a>
                     <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
                 </div>
             </div>
@@ -225,7 +226,7 @@ $row = mysqli_fetch_array($result)
 
                     <div class="user-area dropdown float-right">
                         <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="user-avatar rounded-circle" src="front-end/dosen_view/images/admin.jpg" alt="User Avatar">
+                            <img class="user-avatar rounded-circle" src="images/admin.jpg" alt="User Avatar">
                         </a>
 
                         <div class="user-menu dropdown-menu">
@@ -270,7 +271,9 @@ $row = mysqli_fetch_array($result)
 
         <div class="content">
             <div class="animated fadeIn" id="nampil">
-                
+            <?php    
+                require('../../back-end/tampil_kelas.php');
+            ?>
             </div><!-- .animated -->
         </div><!-- .content -->
 
@@ -303,7 +306,7 @@ $row = mysqli_fetch_array($result)
                                         <select id="id_mk" name="id_mk" data-placeholder="Pilih Matkul ..." multiple class="standardSelect">
                                             <option value="" label="default"></option>
                                             <?php
-                                            require('back-end/load_matkul.php');
+                                                require('../../back-end/load_matkul.php');
                                             ?>
                                         </select>
                                     </div>
@@ -315,7 +318,7 @@ $row = mysqli_fetch_array($result)
                                         <select id="id_dosen" name="id_dosen" data-placeholder="Pilih Dosen ..." multiple class="standardSelect">
                                             <option value="" label="default"></option>
                                             <?php
-                                            require('back-end/load_dosen.php');
+                                                require('../../back-end/load_dosen.php');
                                             ?>
                                         </select>
                                     </div>
@@ -377,7 +380,7 @@ $row = mysqli_fetch_array($result)
                                             <select id="E_MK" data-placeholder="Pilih Matkul ..." multiple class="standardSelect">
                                                 <option value="" label="default"></option>
                                                 <?php
-                                                require('back-end/load_matkul.php');
+                                                    require('../../back-end/load_matkul.php');
                                                 ?>
                                             </select>
                                         </div>
@@ -396,7 +399,7 @@ $row = mysqli_fetch_array($result)
                                             <select id="E_DOSEN" data-placeholder="Pilih Dosen ..." multiple class="standardSelect">
                                                 <option value="" label="default"></option>
                                                 <?php
-                                                require('back-end/load_dosen.php');
+                                                    require('../../back-end/load_dosen.php');
                                                 ?>
                                             </select>
                                         </div>
@@ -453,20 +456,20 @@ $row = mysqli_fetch_array($result)
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
-    <script src="front-end/dosen_view/assets/js/main.js"></script>
+    <script src="assets/js/main.js"></script>
 
 
-    <script src="front-end/dosen_view/assets/js/lib/data-table/datatables.min.js"></script>
-    <script src="front-end/dosen_view/assets/js/lib/data-table/dataTables.bootstrap.min.js"></script>
-    <script src="front-end/dosen_view/assets/js/lib/data-table/dataTables.buttons.min.js"></script>
-    <script src="front-end/dosen_view/assets/js/lib/data-table/buttons.bootstrap.min.js"></script>
-    <script src="front-end/dosen_view/assets/js/lib/data-table/jszip.min.js"></script>
-    <script src="front-end/dosen_view/assets/js/lib/data-table/vfs_fonts.js"></script>
-    <script src="front-end/dosen_view/assets/js/lib/data-table/buttons.html5.min.js"></script>
-    <script src="front-end/dosen_view/assets/js/lib/data-table/buttons.print.min.js"></script>
-    <script src="front-end/dosen_view/assets/js/lib/data-table/buttons.colVis.min.js"></script>
-    <script src="front-end/dosen_view/assets/js/init/datatables-init.js"></script>
-    <script src="front-end/dosen_view/assets/js/lib/chosen/chosen.jquery.min.js"></script>
+    <script src="assets/js/lib/data-table/datatables.min.js"></script>
+    <script src="assets/js/lib/data-table/dataTables.bootstrap.min.js"></script>
+    <script src="assets/js/lib/data-table/dataTables.buttons.min.js"></script>
+    <script src="assets/js/lib/data-table/buttons.bootstrap.min.js"></script>
+    <script src="assets/js/lib/data-table/jszip.min.js"></script>
+    <script src="assets/js/lib/data-table/vfs_fonts.js"></script>
+    <script src="assets/js/lib/data-table/buttons.html5.min.js"></script>
+    <script src="assets/js/lib/data-table/buttons.print.min.js"></script>
+    <script src="assets/js/lib/data-table/buttons.colVis.min.js"></script>
+    <script src="assets/js/init/datatables-init.js"></script>
+    <script src="assets/js/lib/chosen/chosen.jquery.min.js"></script>
 
 
     <script type="text/javascript">
