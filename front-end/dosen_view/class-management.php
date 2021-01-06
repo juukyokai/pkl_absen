@@ -269,46 +269,8 @@ $row = mysqli_fetch_array($result)
         </div>
 
         <div class="content">
-            <div class="animated fadeIn">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <strong class="card-title">Data Kelas</strong> 
-                                <button type="button" class="btn btn-success mb-1" data-toggle="modal" data-target="#tambahkelas">
-                                    <i class="fa fa-plus-circle"></i>
-                                    Tambah Kelas
-                                </button>
-                            </div>
-                            <div class="card-body">
-                                <div id="tabel_tampil">
-                                <table id="bootstrap-data-table" class="table table-striped table-bordered">               
-                                    <thead>
-                                        <tr>
-                                            
-                                            <th>Nama Kelas</th>
-                                            <th>Mata Kuliah</th>
-                                            <th>SKS</th>
-                                            <th>Dosen</th>
-                                            <th>Hari</th>
-                                            <th>Jam</th>
-                                            <th>Edit</th>
-                                            <th>Hapus</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                            <?php
-                                                require('back-end/tampil_kelas.php');
-                                            ?>
-                                    </tbody>
-                                </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>
+            <div class="animated fadeIn" id="nampil">
+                
             </div><!-- .animated -->
         </div><!-- .content -->
 
@@ -467,28 +429,6 @@ $row = mysqli_fetch_array($result)
             </div>
         </div>
 
-        <div class="modal fade" id="hapuskelas" tabindex="-1" role="dialog" aria-labelledby="largeModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="largeModalLabel">Large Modal</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <p>
-                            Apakah anda ingin menghapus kelas?
-                        </p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Selesai/Cancel</button>
-                        <input type="button" name="delete" value="Hapus" id="<?php echo $row["id_kelas"]; ?>" class="btn btn-danger mb-1 hapus_data" />
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <div class="clearfix"></div>
 
         <footer class="site-footer">
@@ -532,6 +472,7 @@ $row = mysqli_fetch_array($result)
     <script type="text/javascript">
         $(document).ready(function() {
           $('#bootstrap-data-table-export').DataTable();
+          tampil();
       } );
     </script>
     <script>
@@ -542,41 +483,57 @@ $row = mysqli_fetch_array($result)
                 width: "100%"
             });
         });
+        function tampil(){
+            $.ajax({
+                type: "GET",
+                url: "back-end/tampil_kelas.php",
+                success: function(msg){
+                    $('#nampil').html(msg);
+                }
+            });
+        }
     </script>
     <script>
     $(document).ready(function(){
     // Begin Aksi Insert
     $('#insert_form').on("submit", function(event){  
-    event.preventDefault();  
-    if($('#kode_nama_kelas').val() == ""){  
-        alert("Mohon Isi Kode Nama Kelas ");  
-    }else if($('#id_mk').val() == ''){  
-            alert("Mohon Isi id_mk");  
-        }else if($('#id_dosen').val() == ''){  
-                alert("Mohon Isi dosen");  
-            }else if($('#hari_kelas').val() == ''){  
-                    alert("Mohon Isi Hari Kelas");  
-                }else if($('#jam_kelas').val() == ''){  
-                        alert("Mohon Isi Jam Kelas");  
-                    }else{  
-                        $.ajax({  
-                            url:"back-end/tambahkelas.php",  
-                            method:"POST",  
-                            
-                        });  
-                    }  
-    });
-
-    $(document).on('click', '.hapus_data', function(){
-    var id_kelas = $(this).attr("id_kelas");
-        $.ajax({
-            url:"back-end/deletekelas.php?id_kelas=<?php echo $row['id_kelas']?>",
-            method:"GET",
-            data:{id_kelas:id_kelas},
-            success:function(data){
-                $('#tabel_tampil').html(data);  
-            }
-        });
+    event.preventDefault(); 
+    if($('#kode_nama_kelas').val() == "")  
+    {  
+    alert("Mohon Isi Kode Nama Kelas ");  
+    }  
+    else if($('#id_mk').val() == '')  
+    {  
+    alert("Mohon Isi id_mk");  
+    }
+    else if($('#id_dosen').val() == '')  
+    {  
+    alert("Mohon Isi dosen");  
+    }
+    else if($('#hari_kelas').val() == '')  
+    {  
+    alert("Mohon Isi Hari Kelas");  
+    }
+    else if($('#jam_kelas').val() == '')  
+    {  
+    alert("Mohon Isi Jam Kelas");  
+    }
+    
+    else  
+    {  
+    $.ajax({  
+        url:"back-end/tambahkelas.php",  
+        method:"POST",  
+        data:$('#insert_form').serialize(),  
+        beforeSend:function(){
+        $('#insert').val("Confirm");  
+        },  
+        success:function(data){  
+        $('#insert_form')[0].reset();
+        tampil();
+        }  
+    });  
+    }  
     });
     });
    
