@@ -1,12 +1,12 @@
 <?php
-date_default_timezone_set('Asia/Jakarta');
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daftar Kelas Daring</title>
+    <title>Login Kelas Daring</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 </head>
 <body>
@@ -18,7 +18,7 @@ date_default_timezone_set('Asia/Jakarta');
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href="index3.php">Home<span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="index.php">Home<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="daftar.php">Daftar Akun</a>
@@ -31,18 +31,17 @@ date_default_timezone_set('Asia/Jakarta');
 </nav>
 
 <div class="container mt-5">
-    <h1 class="text-center">Daftar Kelas Daring</h1>
+    <h1 class="text-center">Login Kelas Daring</h1>
     <form class="nt-5" action ="code.php" method="POST"> 
   <div class="form-group">
-    <label for="exampleInputEmail1">Masukkan Username</label>
-    <input type="text" class="form-control"  name="username">
+    <label for="exampleInputEmail1">Username</label>
+    <input type="text" class="form-control" name="username" >
   </div>
   <div class="form-group">
     <label for="exampleInputPassword1">Password</label>
     <input type="password" class="form-control" name="password" id="exampleInputPassword1">
   </div>
-  <input type="hidden" value="<?= date("d-m-Y h:i:sa")?>" class="form-control"  name="create_at">
-  <button type="submit" class="btn btn-warning" name="user">Daftar</button>
+  <button type="submit" class="btn btn-warning" name="button">Masuk</button>
 </form>
 </div>
 
