@@ -2,10 +2,10 @@
 -- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Waktu pembuatan: 06 Jan 2021 pada 01.11
--- Versi server: 10.4.14-MariaDB
--- Versi PHP: 7.2.33
+-- Host: localhost
+-- Generation Time: Jan 06, 2021 at 04:34 PM
+-- Server version: 10.4.13-MariaDB
+-- PHP Version: 7.4.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `dosen`
+-- Table structure for table `dosen`
 --
 
 CREATE TABLE `dosen` (
@@ -39,7 +39,7 @@ CREATE TABLE `dosen` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `dosen`
+-- Dumping data for table `dosen`
 --
 
 INSERT INTO `dosen` (`id_dosen`, `nip_dosen`, `id_jurusan`, `nama_dosen`, `email_dosen`, `status_dosen`, `create_at`, `update_at`) VALUES
@@ -54,7 +54,7 @@ INSERT INTO `dosen` (`id_dosen`, `nip_dosen`, `id_jurusan`, `nama_dosen`, `email
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `jurusan`
+-- Table structure for table `jurusan`
 --
 
 CREATE TABLE `jurusan` (
@@ -65,7 +65,7 @@ CREATE TABLE `jurusan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `jurusan`
+-- Dumping data for table `jurusan`
 --
 
 INSERT INTO `jurusan` (`id_jurusan`, `nama_jurusan`, `create_at`, `update_at`) VALUES
@@ -75,7 +75,7 @@ INSERT INTO `jurusan` (`id_jurusan`, `nama_jurusan`, `create_at`, `update_at`) V
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kbm`
+-- Table structure for table `kbm`
 --
 
 CREATE TABLE `kbm` (
@@ -89,7 +89,7 @@ CREATE TABLE `kbm` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `kbm`
+-- Dumping data for table `kbm`
 --
 
 INSERT INTO `kbm` (`id_kbm`, `id_mhs`, `id_kelas`, `absen_awal`, `absen_akhir`, `create_at`, `update_at`) VALUES
@@ -141,7 +141,7 @@ INSERT INTO `kbm` (`id_kbm`, `id_mhs`, `id_kelas`, `absen_awal`, `absen_akhir`, 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kelas`
+-- Table structure for table `kelas`
 --
 
 CREATE TABLE `kelas` (
@@ -157,7 +157,7 @@ CREATE TABLE `kelas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `kelas`
+-- Dumping data for table `kelas`
 --
 
 INSERT INTO `kelas` (`id_kelas`, `id_mk`, `id_dosen`, `kode_nama_kelas`, `link_kelas`, `hari_kelas`, `jam_kelas`, `create_at`, `update_at`) VALUES
@@ -183,7 +183,7 @@ INSERT INTO `kelas` (`id_kelas`, `id_mk`, `id_dosen`, `kode_nama_kelas`, `link_k
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `mahasiswa`
+-- Table structure for table `mahasiswa`
 --
 
 CREATE TABLE `mahasiswa` (
@@ -198,7 +198,7 @@ CREATE TABLE `mahasiswa` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `mahasiswa`
+-- Dumping data for table `mahasiswa`
 --
 
 INSERT INTO `mahasiswa` (`id_mhs`, `id_jurusan`, `npm_mhs`, `nama_mhs`, `email_mhs`, `status_mhs`, `create_at`, `update_at`) VALUES
@@ -220,7 +220,7 @@ INSERT INTO `mahasiswa` (`id_mhs`, `id_jurusan`, `npm_mhs`, `nama_mhs`, `email_m
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `mata_kuliah`
+-- Table structure for table `mata_kuliah`
 --
 
 CREATE TABLE `mata_kuliah` (
@@ -234,7 +234,7 @@ CREATE TABLE `mata_kuliah` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `mata_kuliah`
+-- Dumping data for table `mata_kuliah`
 --
 
 INSERT INTO `mata_kuliah` (`id_mk`, `id_jurusan`, `nama_mk`, `sks`, `status_mk`, `create_at`, `update_at`) VALUES
@@ -245,7 +245,7 @@ INSERT INTO `mata_kuliah` (`id_mk`, `id_jurusan`, `nama_mk`, `sks`, `status_mk`,
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user`
+-- Table structure for table `user`
 --
 
 CREATE TABLE `user` (
@@ -259,7 +259,7 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `user`
+-- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`id_user`, `id_komplemen`, `username`, `password`, `tipe_user`, `create_at`, `update_at`) VALUES
@@ -268,14 +268,15 @@ INSERT INTO `user` (`id_user`, `id_komplemen`, `username`, `password`, `tipe_use
 (3, 2, '18081010002', '0002', 2, '2020-12-28 15:15:07', '2020-12-28 15:15:07'),
 (4, 3, '18081010003', '0003', 2, '2020-12-28 15:15:07', '2020-12-28 15:15:07'),
 (5, 4, '18081010004', '0004', 2, '2020-12-28 15:15:07', '2020-12-28 15:15:07'),
-(6, 5, '18081010005', '0005', 2, '2020-12-28 15:15:07', '2020-12-28 15:15:07');
+(6, 5, '18081010005', '0005', 2, '2020-12-28 15:15:07', '2020-12-28 15:15:07'),
+(7, 1, 'juukyokai00@gmail.com', 'admin1', 1, '2021-01-06 14:55:34', '2021-01-06 14:55:34');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indeks untuk tabel `dosen`
+-- Indexes for table `dosen`
 --
 ALTER TABLE `dosen`
   ADD PRIMARY KEY (`id_dosen`),
@@ -283,13 +284,13 @@ ALTER TABLE `dosen`
   ADD KEY `dosen_jurusan` (`id_jurusan`);
 
 --
--- Indeks untuk tabel `jurusan`
+-- Indexes for table `jurusan`
 --
 ALTER TABLE `jurusan`
   ADD PRIMARY KEY (`id_jurusan`);
 
 --
--- Indeks untuk tabel `kbm`
+-- Indexes for table `kbm`
 --
 ALTER TABLE `kbm`
   ADD PRIMARY KEY (`id_kbm`),
@@ -297,7 +298,7 @@ ALTER TABLE `kbm`
   ADD KEY `kbm_kelas` (`id_kelas`);
 
 --
--- Indeks untuk tabel `kelas`
+-- Indexes for table `kelas`
 --
 ALTER TABLE `kelas`
   ADD PRIMARY KEY (`id_kelas`),
@@ -306,7 +307,7 @@ ALTER TABLE `kelas`
   ADD KEY `kelas_dosen` (`id_dosen`);
 
 --
--- Indeks untuk tabel `mahasiswa`
+-- Indexes for table `mahasiswa`
 --
 ALTER TABLE `mahasiswa`
   ADD PRIMARY KEY (`id_mhs`),
@@ -314,96 +315,96 @@ ALTER TABLE `mahasiswa`
   ADD KEY `mhs_jurusan` (`id_jurusan`);
 
 --
--- Indeks untuk tabel `mata_kuliah`
+-- Indexes for table `mata_kuliah`
 --
 ALTER TABLE `mata_kuliah`
   ADD PRIMARY KEY (`id_mk`),
   ADD KEY `mk_jurusan` (`id_jurusan`);
 
 --
--- Indeks untuk tabel `user`
+-- Indexes for table `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id_user`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `dosen`
+-- AUTO_INCREMENT for table `dosen`
 --
 ALTER TABLE `dosen`
   MODIFY `id_dosen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT untuk tabel `jurusan`
+-- AUTO_INCREMENT for table `jurusan`
 --
 ALTER TABLE `jurusan`
   MODIFY `id_jurusan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT untuk tabel `kbm`
+-- AUTO_INCREMENT for table `kbm`
 --
 ALTER TABLE `kbm`
   MODIFY `id_kbm` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
--- AUTO_INCREMENT untuk tabel `kelas`
+-- AUTO_INCREMENT for table `kelas`
 --
 ALTER TABLE `kelas`
   MODIFY `id_kelas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
--- AUTO_INCREMENT untuk tabel `mahasiswa`
+-- AUTO_INCREMENT for table `mahasiswa`
 --
 ALTER TABLE `mahasiswa`
   MODIFY `id_mhs` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
--- AUTO_INCREMENT untuk tabel `mata_kuliah`
+-- AUTO_INCREMENT for table `mata_kuliah`
 --
 ALTER TABLE `mata_kuliah`
   MODIFY `id_mk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT untuk tabel `user`
+-- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- Constraints for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `dosen`
+-- Constraints for table `dosen`
 --
 ALTER TABLE `dosen`
   ADD CONSTRAINT `dosen_jurusan` FOREIGN KEY (`id_jurusan`) REFERENCES `jurusan` (`id_jurusan`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `kbm`
+-- Constraints for table `kbm`
 --
 ALTER TABLE `kbm`
   ADD CONSTRAINT `kbm_kelas` FOREIGN KEY (`id_kelas`) REFERENCES `kelas` (`id_kelas`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `kbm_mhs` FOREIGN KEY (`id_mhs`) REFERENCES `mahasiswa` (`id_mhs`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `kelas`
+-- Constraints for table `kelas`
 --
 ALTER TABLE `kelas`
   ADD CONSTRAINT `kelas_dosen` FOREIGN KEY (`id_dosen`) REFERENCES `dosen` (`id_dosen`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `kelas_mk` FOREIGN KEY (`id_mk`) REFERENCES `mata_kuliah` (`id_mk`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `mahasiswa`
+-- Constraints for table `mahasiswa`
 --
 ALTER TABLE `mahasiswa`
   ADD CONSTRAINT `mhs_jurusan` FOREIGN KEY (`id_jurusan`) REFERENCES `jurusan` (`id_jurusan`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `mata_kuliah`
+-- Constraints for table `mata_kuliah`
 --
 ALTER TABLE `mata_kuliah`
   ADD CONSTRAINT `mk_jurusan` FOREIGN KEY (`id_jurusan`) REFERENCES `jurusan` (`id_jurusan`) ON DELETE CASCADE ON UPDATE CASCADE;
