@@ -1,40 +1,16 @@
 <?php 
     session_start();
     $id = $_SESSION['id_komplemen'];
-    //index.php
-    // require('access/db_connect.php');
-    // $query = "SELECT 
-    // kelas.id_kelas,  
-    // kelas.kode_nama_kelas,
-    // kelas.hari_kelas, 
-    // kelas.jam_kelas,
-    // dosen.nama_dosen,
-    // mata_kuliah.nama_mk,
-    // mata_kuliah.sks
-    // FROM kelas,dosen, mata_kuliah
-    // where kelas.id_mk=mata_kuliah.id_mk && kelas.id_dosen=dosen.id_dosen ORDER BY kode_nama_kelas";
-    // $result = $conn->query($query);
-    // $row = mysqli_fetch_array($result)
-    require('access/db_connect.php');
-    $query = "SELECT 
-    kelas.id_kelas,  
-    kelas.kode_nama_kelas,
-    kelas.hari_kelas, 
-    kelas.jam_kelas,
-    dosen.nama_dosen,
-    mata_kuliah.nama_mk,
-    mata_kuliah.sks
-    FROM kelas,dosen, mata_kuliah
-    where kelas.id_mk=mata_kuliah.id_mk && kelas.id_dosen=dosen.id_dosen ORDER BY kode_nama_kelas";
-    $result = $conn->query($query);
-    $row = mysqli_fetch_array($result)
+    
+    
  ?>
 
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+<!--[if gt IE 8]><!--> 
+<html class="no-js" lang=""> <!--<![endif]-->
 <head>
     
     <meta charset="utf-8">
@@ -117,7 +93,6 @@
                             $conn->close();
                         ?>
                     </div>
-
                     <div class="user-area dropdown float-right">
                         <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img class="user-avatar rounded-circle" src="images/admin.jpg" alt="User Avatar">
@@ -185,6 +160,21 @@
                                     </thead>
                                     <tbody>
                                     <?php
+                                            require('access/db_connect.php');
+                                            $query = "  SELECT  kelas.id_kelas,  
+                                                                kelas.kode_nama_kelas,
+                                                                kelas.hari_kelas, 
+                                                                kelas.jam_kelas,
+                                                                dosen.nama_dosen,
+                                                                mata_kuliah.nama_mk,
+                                                                mata_kuliah.sks
+                                                        FROM kelas,dosen, mata_kuliah
+                                                        where kelas.id_mk=mata_kuliah.id_mk && kelas.id_dosen=dosen.id_dosen 
+                                                        ORDER BY kode_nama_kelas
+                                            ";
+                                            $result = $conn->query($query);
+                                            $row = mysqli_fetch_array($result);
+
                                             while($row_kelas = mysqli_fetch_array($result)):?>
                                                 <tr>
                                                     <td> <span class='name'><?php echo $row_kelas['kode_nama_kelas'] ?></span> </td>
@@ -212,6 +202,7 @@
                                                     </td>
                                                 </tr>
                                             <?php endwhile;
+                                                    $conn->close();
                                             ?>
                                     </tbody>
                                 </table>

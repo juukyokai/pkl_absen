@@ -1,5 +1,6 @@
 <?php
     function prepare_query($id_mhs,$id_kelas){ 
+        echo "bangke";
         $query ="SELECT
                     kbm.id_kbm,
                     AVG(kbm.absen_awal) as kehadiran_awal,
@@ -17,12 +18,14 @@
         return $query;
     }
     function processing_absen($query){
+        echo "bangsat";
         //preparing *absen variable
         $abs_awal = 0;      //absen awal
         $abs_akhir = 0;     //absen akhir
         $abs_total = 0;     //absen total
         $jml_hadir = 0;     //jumlah hadir
         $ket = "Non-Aktif";           //keaktifan
+
         require('db_connect.php');
         $result = $conn->query($query);
         while($row_query = mysqli_fetch_array($result)){
@@ -60,14 +63,23 @@
 
 
     require('db_connect.php');
+    
     //preparing query
     $result = $conn->query($default_query);
     //loop-print table content
     while($row_absen = mysqli_fetch_array($result)){
-        $prep_query= prepare_query($row_absen['id_mhs'],$kelas);
-        processing_absen(
-            $prep_query
-        );
+        // $prep_query= prepare_query($row_absen['id_mhs'],$kelas);
+        // processing_absen(
+        //     $prep_query
+        // );
+        
+        echo "
+        <tr>
+        
+            ".$row_absen['id_mhs']."
+        
+        <tr>
+        ";
     }
     $conn->close();
     
