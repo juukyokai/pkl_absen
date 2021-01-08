@@ -1,38 +1,19 @@
-<<<<<<< HEAD
-<?php  
-//index.php
-require('db_connect.php');
-$query = "SELECT 
-kelas.id_kelas,  
-kelas.kode_nama_kelas,
-kelas.hari_kelas, 
-kelas.jam_kelas,
-dosen.nama_dosen,
-mata_kuliah.nama_mk,
-mata_kuliah.sks
-FROM kelas,dosen, mata_kuliah
-where kelas.id_mk=mata_kuliah.id_mk && kelas.id_dosen=dosen.id_dosen ORDER BY kode_nama_kelas";
-$result = $conn->query($query);
-?>
-=======
 <?php 
     session_start();
-    //index.php
-    // require('access/db_connect.php');
-    // $query = "SELECT 
-    // kelas.id_kelas,  
-    // kelas.kode_nama_kelas,
-    // kelas.hari_kelas, 
-    // kelas.jam_kelas,
-    // dosen.nama_dosen,
-    // mata_kuliah.nama_mk,
-    // mata_kuliah.sks
-    // FROM kelas,dosen, mata_kuliah
-    // where kelas.id_mk=mata_kuliah.id_mk && kelas.id_dosen=dosen.id_dosen ORDER BY kode_nama_kelas";
-    // $result = $conn->query($query);
-    // $row = mysqli_fetch_array($result)
+    require('access/db_connect.php');
+    $query = "SELECT 
+    kelas.id_kelas,  
+    kelas.kode_nama_kelas,
+    kelas.hari_kelas, 
+    kelas.jam_kelas,
+    dosen.nama_dosen,
+    mata_kuliah.nama_mk,
+    mata_kuliah.sks
+    FROM kelas,dosen, mata_kuliah
+    where kelas.id_mk=mata_kuliah.id_mk && kelas.id_dosen=dosen.id_dosen ORDER BY kode_nama_kelas";
+    $result = $conn->query($query);
+    $row = mysqli_fetch_array($result)
  ?>
->>>>>>> d6bfd61b19a8e053609cdbe10651fb5eea327965
 
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
@@ -333,7 +314,7 @@ $result = $conn->query($query);
                                                     </td>
                                                     <td>
                                                     
-                                                        <a href="back-end/deletekelas.php?id_kelas=<?php echo $row_kelas['id_kelas']?>">
+                                                        <a href="../../back-end/deletekelas.php?id_kelas=<?php echo $row_kelas['id_kelas']?>">
                                                         <button type='button' class='btn btn-danger mb-1' data-toggle='modal' data-target='#hapuskelas'>
                                                             <i class='fa fa-minus-circle'></i>
                                                             Hapus Kelas
@@ -442,49 +423,7 @@ $result = $conn->query($query);
                                 <div class="card-header">
                                     <strong>FAKULTAS ILMU KOMPUTER</strong>
                                 </div>
-<<<<<<< HEAD
                                 <div class="card-body card-block" id="form_edit">
-=======
-                                <div class="card-body card-block">
-                                <div class="form-group">
-                                        <label class=" form-control-label">Kode Nama Kelas</label>
-                                        <div class="input-group">
-                                            <input id="E_KNK" class="form-control" type="text" name="hari_kelas" placeholder="Masukkan Kode Nama Kelas">
-                                        </div>
-                                        <small class="form-text text-muted">ex. G068</small>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class=" form-control-label">Mata Kuliah</label>
-                                        <div class="input-group">
-                                            <select id="E_MK" data-placeholder="Pilih Matkul ..." multiple class="standardSelect">
-                                                <option value="" label="default"></option>
-                                                <?php
-                                                    require('../../back-end/load_matkul.php');
-                                                ?>
-                                            </select>
-                                        </div>
-                                        <small class="form-text text-muted">ex. Pemrograman Web</small>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class=" form-control-label">Masukkan SKS ...</label>
-                                        <div class="input-group">
-                                            <input id="E_SKS" class="form-control" type="text" name="hari_kelas" placeholder="Masukkan Kode Nama Kelas">
-                                        </div>
-                                        <small class="form-text text-muted">ex. 3</small>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class=" form-control-label">Dosen Kelas</label>
-                                        <div class="input-group">
-                                            <select id="E_DOSEN" data-placeholder="Pilih Dosen ..." multiple class="standardSelect">
-                                                <option value="" label="default"></option>
-                                                <?php
-                                                    require('../../back-end/load_dosen.php');
-                                                ?>
-                                            </select>
-                                        </div>
-                                        <small class="form-text text-muted">ex. Parlika</small>
-                                    </div>
->>>>>>> d6bfd61b19a8e053609cdbe10651fb5eea327965
                                 
                                 </div>
                             </div>
@@ -578,7 +517,7 @@ $result = $conn->query($query);
     else  
     {  
     $.ajax({  
-        url:"back-end/tambahkelas.php",  
+        url:"../../back-end/tambahkelas.php",  
         method:"POST",  
         data:$('#insert_form').serialize(),  
         beforeSend:function(){
@@ -596,7 +535,7 @@ $result = $conn->query($query);
     $(document).on('click', '.edit_data', function(){
     var id_kelas = $(this).attr("id");
     $.ajax({
-    url:"back-end/editkelas.php",
+    url:"../../back-end/editkelas.php",
     method:"POST",
     data:{id_kelas:id_kelas},
     success:function(data){

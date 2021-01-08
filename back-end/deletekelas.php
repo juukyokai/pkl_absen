@@ -8,7 +8,7 @@
 
 		//eksekusi query
 		$req = $conn->query($query);
-		header('Location:../index.php');
-
+		
+		header('Location:../front-end/dosen_view/class-management.php');
 }
 ?>

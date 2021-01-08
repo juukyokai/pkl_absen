@@ -2,7 +2,7 @@
 $('#edit_form').on("submit", function(event){  
   event.preventDefault();   
    $.ajax({  
-    url:"back-end/updatekelas.php",  
+    url:"../../back-end/updatekelas.php",  
     method:"POST",  
     data:$('#edit_form').serialize(),  
     beforeSend:function(){  
@@ -29,46 +29,37 @@ if(isset($_POST["id_kelas"]))
     <div class="form-group">
             <label class="form-control-label">Kode Nama Kelas</label>
             <div class="input-group">
-            <input id="eknk" value="'.$_POST["id_kelas"].'" class="form-control" type="hidden" name="hari_kelas">
-            <input id="eknk" value="'.$row["kode_nama_kelas"].'" class="form-control" type="text" name="hari_kelas">
+            <input id="eid" value="'.$_POST["id_kelas"].'" class="form-control" type="hidden" name="eid">
+            <input id="eknk" value="'.$row["kode_nama_kelas"].'" class="form-control" type="text" name="eknk" placeholder="Kode Nama Kelas Tidak Bisa Diganti ... " readonly>
             </div>
             <small class="form-text text-muted">ex. G068</small>
         </div>
         <div class="form-group">
             <label class=" form-control-label">Mata Kuliah</label>
             <div class="input-group">
-                <select id="id_mk" name="id_mk" data-placeholder="Pilih Matkul ..." multiple class="standardSelect">
-                    <option value="" label="default"></option>
-                    <?php
-                    require("back-end/load_matkul.php");
-                    ?>
-                </select>
+                <input id="emk" value="'.$row["nama_mk"].'" class="form-control" type="text" name="emk" placeholder="Nama Matkul Tidak Bisa Diganti ... "readonly>
+            </div>
             </div>
             <small class="form-text text-muted">ex. Pemrograman Web</small>
         </div>
         <div class="form-group">
             <label class=" form-control-label">Dosen Kelas</label>
             <div class="input-group">
-                <select id="id_dosen" name="id_dosen" data-placeholder="Pilih Dosen ..." multiple class="standardSelect">
-                    <option value="" label="default"></option>
-                    <?php
-                    require("back-end/load_dosen.php");
-                    ?>
-                </select>
+                <input id="edosen" value="'.$row["nama_dosen"].'" class="form-control" type="text" name="edosen" placeholder="Nama Dosen Tidak Bisa Diganti "readonly>
             </div>
             <small class="form-text text-muted">ex. Fahmi</small>
         </div>
         <div class="form-group">
             <label class=" form-control-label">Hari Kelas</label>
             <div class="input-group">
-                <input id="ehari" value="'.$row["hari_kelas"].'" class="form-control" type="text" name="hari_kelas" placeholder="Masukkan Hari Kelas ...">
+                <input id="ehari" value="'.$row["hari_kelas"].'" class="form-control" type="text" name="ehari" placeholder="Masukkan Hari Kelas ...">
             </div>
             <small class="form-text text-muted">ex. Senin</small>
         </div>
         <div class="form-group">
             <label class=" form-control-label">Jam Kelas</label>
             <div class="input-group">
-                <input id="ejam" value="'.$row["jam_kelas"].'" class="form-control" type="text" name="hari_kelas" placeholder="Masukkan Jam Kelas ...">
+                <input id="ejam" value="'.$row["jam_kelas"].'" class="form-control" type="text" name="ejam" placeholder="Masukkan Jam Kelas ...">
             </div>
             <small class="form-text text-muted">ex. 19.00.00</small>
         </div>
