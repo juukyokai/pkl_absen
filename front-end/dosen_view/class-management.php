@@ -48,6 +48,7 @@
                     <li>
                         <a href="../../front-end/dosen_view/index.php"><i class="menu-icon fa fa-laptop"></i>Dashboard</a>
                     </li>
+                    <li class="menu-title">Manajemen Pengajaran</li><!-- /.menu-title -->
                     <li class="menu-item active">
                         <a href="#" class="menu-item"> <i class="menu-icon fa fa-table"></i>Daftar Kelas</a>
                     </li>
@@ -69,8 +70,8 @@
         <header id="header" class="header">
             <div class="top-left">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="./"><img src="images/logo.png" alt="Logo"></a>
-                    <a class="navbar-brand hidden" href="./"><img src="images/logo2.png" alt="Logo"></a>
+                    <a class="navbar-brand" href="./"><img src="images/logo_upn.png" alt="Logo" style="height:36px"></a>
+                    <a class="navbar-brand hidden" href="./"><img src="images/logo_upn.png" alt="Logo"></a>
                     <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
                 </div>
             </div>
@@ -170,7 +171,7 @@
                                                 mata_kuliah.nama_mk,
                                                 mata_kuliah.sks
                                                 FROM kelas,dosen, mata_kuliah
-                                            where kelas.id_mk=mata_kuliah.id_mk && kelas.id_dosen=dosen.id_dosen ORDER BY kode_nama_kelas";
+                                            where kelas.id_mk=mata_kuliah.id_mk && kelas.id_dosen=dosen.id_dosen && kelas.id_dosen=$id ORDER BY kode_nama_kelas";
                                             $result = $conn->query($query);
                                             $row = mysqli_fetch_array($result);
                                             while($row_kelas = mysqli_fetch_array($result)){?>
