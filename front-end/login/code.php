@@ -6,6 +6,7 @@ require('db_connect.php');
 if(isset($_POST['masuk'])){
     //$id_komplemen = $_POST['id_komplemen'];
     //$tipe_user = $_POST['tipe_user'];
+    $_SESSION['login_status'] = false;
     $username = $_POST['username'];
     $password = $_POST['password'];
     
@@ -18,6 +19,7 @@ if(isset($_POST['masuk'])){
         if($row_login['tipe_user'] == 1 || $row_login['tipe_user'] == 0){
             $_SESSION['username'] = $username;
             $_SESSION['id_komplemen'] = $row_login['id_komplemen'];
+            $_SESSION['login_status'] = true;
             header('Location: ../dosen_view/index.php');
             exit;
         }else if($row_login['tipe_user'] == 2){
@@ -43,7 +45,7 @@ if(isset($_POST['daftar'])){
         $query_run = $conn->query($query);
     
         if($query_run){
-            header('Location:index3.php');
+            header('Location:index.php');
         }
         else{
             header('Location:daftar.php');
