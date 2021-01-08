@@ -15,6 +15,19 @@
     // where kelas.id_mk=mata_kuliah.id_mk && kelas.id_dosen=dosen.id_dosen ORDER BY kode_nama_kelas";
     // $result = $conn->query($query);
     // $row = mysqli_fetch_array($result)
+    require('access/db_connect.php');
+    $query = "SELECT 
+    kelas.id_kelas,  
+    kelas.kode_nama_kelas,
+    kelas.hari_kelas, 
+    kelas.jam_kelas,
+    dosen.nama_dosen,
+    mata_kuliah.nama_mk,
+    mata_kuliah.sks
+    FROM kelas,dosen, mata_kuliah
+    where kelas.id_mk=mata_kuliah.id_mk && kelas.id_dosen=dosen.id_dosen ORDER BY kode_nama_kelas";
+    $result = $conn->query($query);
+    $row = mysqli_fetch_array($result)
  ?>
 
 <!doctype html>
@@ -144,10 +157,69 @@
         </div>
 
         <div class="content">
-            <div class="animated fadeIn" id="nampil">
-            <?php    
-                require('../../back-end/tampil_kelas.php');
-            ?>
+            <div class="animated fadeIn">
+            <div class="row">
+                    <div class="col-md-12">
+                        <div class="card" id="tabel_tampil">
+                            <div class="card-header">
+                                <strong class="card-title">Data Kelas</strong> 
+                                <button type="button" class="btn btn-success mb-1" data-toggle="modal" data-target="#tambahkelas">
+                                    <i class="fa fa-plus-circle"></i>
+                                    Tambah Kelas
+                                </button>
+                            </div>
+                            <div class="card-body">
+                                <div>
+                                <table id="bootstrap-data-table" class="table table-striped table-bordered">               
+                                    <thead>
+                                        <tr>
+                                            <th>Nama Kelas</th>
+                                            <th>Mata Kuliah</th>
+                                            <th>SKS</th>
+                                            <th>Dosen</th>
+                                            <th>Hari</th>
+                                            <th>Jam</th>
+                                            <th>Edit</th>
+                                            <th>Hapus</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php
+                                            while($row_kelas = mysqli_fetch_array($result)):?>
+                                                <tr>
+                                                    <td> <span class='name'><?php echo $row_kelas['kode_nama_kelas'] ?></span> </td>
+                                                    <td> <span class='name'><?php echo $row_kelas['nama_mk'] ?></span> </td>
+                                                    <td> <span class='count'><?php echo $row_kelas['sks'] ?></span> </td>
+                                                    <td> <span class='name'><?php echo $row_kelas['nama_dosen'] ?></span> </td>
+                                                    <td><span class='product'><?php echo $row_kelas['hari_kelas'] ?></span></td>
+                                                    <td><span class=><?php echo $row_kelas['jam_kelas'] ?></span></td>
+                                                    <td>
+                                                    <button type='button' class='btn btn-primary mb-1 edit_data' id="<?php echo $row_kelas["id_kelas"]; ?>" data-toggle='modal' data-target='#editkelas'>
+                                                            <i class='fa fa-pencil'></i>
+                                                            Edit Kelas
+                                                        </button>
+                                                        
+                                                    </td>
+                                                    <td>
+                                                    
+                                                        <a href="../../back-end/deletekelas.php?id_kelas=<?php echo $row_kelas['id_kelas']?>">
+                                                        <button type='button' class='btn btn-danger mb-1' data-toggle='modal' data-target='#hapuskelas'>
+                                                            <i class='fa fa-minus-circle'></i>
+                                                            Hapus Kelas
+                                                        </button>
+                                                        </a>
+                                                    
+                                                    </td>
+                                                </tr>
+                                            <?php endwhile;
+                                            ?>
+                                    </tbody>
+                                </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div><!-- .animated -->
         </div><!-- .content -->
 
@@ -196,9 +268,8 @@
                                             ?>
                                         </select>
                                     </div>
-                                    <small class="form-text text-muted">ex. Parlika</small>
+                                    <small class="form-text text-muted">ex. Fahmi</small>
                                 </div>
-                            
                                 <div class="form-group">
                                     <label class=" form-control-label">Hari Kelas</label>
                                     <div class="input-group">
@@ -215,7 +286,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Selesai/Cancel</button>
-                                    <input type="submit" name="insert" id="insert" value="Confirm" class="btn btn-success" data-target="#tabel_tampil"/>
+                                    <input type="submit" name="insert" id="insert" value="Confirm" class="btn btn-success"/>
                                 </div> 
                                 </form>
                             </div>
@@ -240,68 +311,13 @@
                                 <div class="card-header">
                                     <strong>FAKULTAS ILMU KOMPUTER</strong>
                                 </div>
-                                <div class="card-body card-block">
-                                <div class="form-group">
-                                        <label class=" form-control-label">Kode Nama Kelas</label>
-                                        <div class="input-group">
-                                            <input id="E_KNK" class="form-control" type="text" name="hari_kelas" placeholder="Masukkan Kode Nama Kelas">
-                                        </div>
-                                        <small class="form-text text-muted">ex. G068</small>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class=" form-control-label">Mata Kuliah</label>
-                                        <div class="input-group">
-                                            <select id="E_MK" data-placeholder="Pilih Matkul ..." multiple class="standardSelect">
-                                                <option value="" label="default"></option>
-                                                <?php
-                                                    require('../../back-end/load_matkul.php');
-                                                ?>
-                                            </select>
-                                        </div>
-                                        <small class="form-text text-muted">ex. Pemrograman Web</small>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class=" form-control-label">Masukkan SKS ...</label>
-                                        <div class="input-group">
-                                            <input id="E_SKS" class="form-control" type="text" name="hari_kelas" placeholder="Masukkan Kode Nama Kelas">
-                                        </div>
-                                        <small class="form-text text-muted">ex. 3</small>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class=" form-control-label">Dosen Kelas</label>
-                                        <div class="input-group">
-                                            <select id="E_DOSEN" data-placeholder="Pilih Dosen ..." multiple class="standardSelect">
-                                                <option value="" label="default"></option>
-                                                <?php
-                                                    require('../../back-end/load_dosen.php');
-                                                ?>
-                                            </select>
-                                        </div>
-                                        <small class="form-text text-muted">ex. Parlika</small>
-                                    </div>
+                                <div class="card-body card-block" id="form_edit">
                                 
-                                    <div class="form-group">
-                                        <label class=" form-control-label">Hari Kelas</label>
-                                        <div class="input-group">
-                                            <input id="E_HARI" class="form-control" type="text" name="hari_kelas" placeholder="Masukkan Hari Kelas ...">
-                                        </div>
-                                        <small class="form-text text-muted">ex. Senin</small>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class=" form-control-label">Jam Kelas</label>
-                                        <div class="input-group">
-                                            <input id="E_JAM" class="form-control" type="text" name="hari_kelas" placeholder="Masukkan Jam Kelas ...">
-                                        </div>
-                                        <small class="form-text text-muted">ex. 19.00.00</small>
-                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <button type="button" class="btn btn-primary" data-dismiss="">Confirm</button>
-                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -349,7 +365,6 @@
     <script type="text/javascript">
         $(document).ready(function() {
           $('#bootstrap-data-table-export').DataTable();
-          tampil();
       } );
     </script>
     <script>
@@ -360,15 +375,6 @@
                 width: "100%"
             });
         });
-        function tampil(){
-            $.ajax({
-                type: "GET",
-                url: "back-end/tampil_kelas.php",
-                success: function(msg){
-                    $('#nampil').html(msg);
-                }
-            });
-        }
     </script>
     <script>
     $(document).ready(function(){
@@ -399,7 +405,7 @@
     else  
     {  
     $.ajax({  
-        url:"back-end/tambahkelas.php",  
+        url:"../../back-end/tambahkelas.php",  
         method:"POST",  
         data:$('#insert_form').serialize(),  
         beforeSend:function(){
@@ -407,11 +413,26 @@
         },  
         success:function(data){  
         $('#insert_form')[0].reset();
-        tampil();
+        location.reload();
+        $('#tabel_tampil').html(data); 
         }  
     });  
     }  
     });
+    //Begin Tampil Detail Karyawan
+    $(document).on('click', '.edit_data', function(){
+    var id_kelas = $(this).attr("id");
+    $.ajax({
+    url:"../../back-end/editkelas.php",
+    method:"POST",
+    data:{id_kelas:id_kelas},
+    success:function(data){
+        $('#form_edit').html(data);
+        $('#editkelas').modal('show');
+    }
+    });
+    });
+//End Tampil Detail Karyawan
     });
    
 </script>

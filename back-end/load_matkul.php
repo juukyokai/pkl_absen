@@ -1,7 +1,7 @@
 <?php
     require('db_connect.php');
     //preparing query
-    $sql_dosen =    //"SELECT * FROM kelas";
+    $sql_dosen =
     
                     "SELECT 
                         id_mk,
