@@ -18,7 +18,7 @@
     $result = $conn->query($sql_kelas);
     //loop-print table content
     ?>
-<div class="row">
+    <div class="row">
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
@@ -62,8 +62,8 @@
                                                     </td>
                                                     <td>
                                                     
-                                                        <a href="back-end/deletekelas.php?id_kelas=<?php echo $row_kelas['id_kelas']?>">
-                                                        <button type='button' class='btn btn-danger mb-1' data-toggle='modal' data-target='#hapuskelas'>
+                                                        <a href="../../back-end/deletekelas.php?id_kelas=<?php echo $row_kelas['id_kelas']?>">
+                                                            <button type='button' class='btn btn-danger mb-1' data-toggle='modal' data-target='#hapuskelas'>
                                                         <i class='fa fa-minus-circle'></i>
                                                         Hapus Kelas
                                                         </button>
