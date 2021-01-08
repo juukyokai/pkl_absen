@@ -10,5 +10,6 @@
 		$req = $conn->query($query);
 		
 		header('Location:../front-end/dosen_view/class-management.php');
+		$conn->close();
 }
 ?>

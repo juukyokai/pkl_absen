@@ -11,5 +11,6 @@
 			 VALUES('$id_mk','$id_dosen','$kode_nama_kelas','$hari_kelas','$jam_kelas')
 			";
 			$res=$conn->query($query);
+			$conn->close();
 	}
 ?>

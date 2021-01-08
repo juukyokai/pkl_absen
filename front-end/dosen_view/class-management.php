@@ -1,8 +1,6 @@
 <?php 
     session_start();
-    $id = $_SESSION['id_komplemen'];
-    
-    
+    $id = $_SESSION['id_komplemen'];   
  ?>
 
 <!doctype html>
@@ -152,6 +150,7 @@
                                             <th>Mata Kuliah</th>
                                             <th>SKS</th>
                                             <th>Dosen</th>
+                                            <th>Link Kelas</th>
                                             <th>Hari</th>
                                             <th>Jam</th>
                                             <th>Edit</th>
@@ -161,26 +160,26 @@
                                     <tbody>
                                     <?php
                                             require('access/db_connect.php');
-                                            $query = "  SELECT  kelas.id_kelas,  
-                                                                kelas.kode_nama_kelas,
-                                                                kelas.hari_kelas, 
-                                                                kelas.jam_kelas,
-                                                                dosen.nama_dosen,
-                                                                mata_kuliah.nama_mk,
-                                                                mata_kuliah.sks
-                                                        FROM kelas,dosen, mata_kuliah
-                                                        where kelas.id_mk=mata_kuliah.id_mk && kelas.id_dosen=dosen.id_dosen 
-                                                        ORDER BY kode_nama_kelas
-                                            ";
+                                            $query = "SELECT 
+                                                kelas.id_kelas,  
+                                                kelas.kode_nama_kelas,
+                                                kelas.hari_kelas, 
+                                                kelas.jam_kelas,
+                                                kelas.link_kelas,
+                                                dosen.nama_dosen,
+                                                mata_kuliah.nama_mk,
+                                                mata_kuliah.sks
+                                                FROM kelas,dosen, mata_kuliah
+                                            where kelas.id_mk=mata_kuliah.id_mk && kelas.id_dosen=dosen.id_dosen ORDER BY kode_nama_kelas";
                                             $result = $conn->query($query);
                                             $row = mysqli_fetch_array($result);
-
-                                            while($row_kelas = mysqli_fetch_array($result)):?>
+                                            while($row_kelas = mysqli_fetch_array($result)){?>
                                                 <tr>
                                                     <td> <span class='name'><?php echo $row_kelas['kode_nama_kelas'] ?></span> </td>
                                                     <td> <span class='name'><?php echo $row_kelas['nama_mk'] ?></span> </td>
                                                     <td> <span class='count'><?php echo $row_kelas['sks'] ?></span> </td>
                                                     <td> <span class='name'><?php echo $row_kelas['nama_dosen'] ?></span> </td>
+                                                    <td><span class='product'><?php echo $row_kelas['link_kelas'] ?></span></td>
                                                     <td><span class='product'><?php echo $row_kelas['hari_kelas'] ?></span></td>
                                                     <td><span class=><?php echo $row_kelas['jam_kelas'] ?></span></td>
                                                     <td>
@@ -201,8 +200,8 @@
                                                     
                                                     </td>
                                                 </tr>
-                                            <?php endwhile;
-                                                    $conn->close();
+                                            <?php }
+                                                    
                                             ?>
                                     </tbody>
                                 </table>

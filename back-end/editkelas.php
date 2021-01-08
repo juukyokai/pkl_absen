@@ -1,6 +1,12 @@
 <script>
 $('#edit_form').on("submit", function(event){  
-  event.preventDefault();   
+  event.preventDefault();  
+  if($('#elink').val() == "")  
+  {  
+   alert("Mohon Isi Link Kelas Terlebih Dahulu ");  
+  }
+  else  
+  {   
    $.ajax({  
     url:"../../back-end/updatekelas.php",  
     method:"POST",  
@@ -8,12 +14,13 @@ $('#edit_form').on("submit", function(event){
     beforeSend:function(){  
      $('#update').val("Updating");  
     },  
-    success:function(data){  
+    success:function(data){ 
      $('#update').val("Complete");  
-     $('#edit_form')[0].reset(); 
+     location.reload(); 
      $('#tabel_tampil').html(data);  
     }  
-   });   
+   });  
+} 
  });
 </script>
 <?php 
@@ -48,6 +55,13 @@ if(isset($_POST["id_kelas"]))
                 <input id="edosen" value="'.$row["nama_dosen"].'" class="form-control" type="text" name="edosen" placeholder="Nama Dosen Tidak Bisa Diganti "readonly>
             </div>
             <small class="form-text text-muted">ex. Fahmi</small>
+        </div>
+        <div class="form-group">
+            <label class=" form-control-label">Link Kelas</label>
+            <div class="input-group">
+                <input id="elink" value="'.$row["link_kelas"].'" class="form-control" type="text" name="elink" placeholder="Masukkan Link Kelas ...">
+            </div>
+            <small class="form-text text-muted">ex. Senin</small>
         </div>
         <div class="form-group">
             <label class=" form-control-label">Hari Kelas</label>
