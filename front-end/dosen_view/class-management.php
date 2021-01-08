@@ -6,6 +6,7 @@
     kelas.kode_nama_kelas,
     kelas.hari_kelas, 
     kelas.jam_kelas,
+    kelas.link_kelas,
     dosen.nama_dosen,
     mata_kuliah.nama_mk,
     mata_kuliah.sks
@@ -289,6 +290,7 @@
                                             <th>Mata Kuliah</th>
                                             <th>SKS</th>
                                             <th>Dosen</th>
+                                            <th>Link Kelas</th>
                                             <th>Hari</th>
                                             <th>Jam</th>
                                             <th>Edit</th>
@@ -303,6 +305,7 @@
                                                     <td> <span class='name'><?php echo $row_kelas['nama_mk'] ?></span> </td>
                                                     <td> <span class='count'><?php echo $row_kelas['sks'] ?></span> </td>
                                                     <td> <span class='name'><?php echo $row_kelas['nama_dosen'] ?></span> </td>
+                                                    <td><span class='product'><?php echo $row_kelas['link_kelas'] ?></span></td>
                                                     <td><span class='product'><?php echo $row_kelas['hari_kelas'] ?></span></td>
                                                     <td><span class=><?php echo $row_kelas['jam_kelas'] ?></span></td>
                                                     <td>
