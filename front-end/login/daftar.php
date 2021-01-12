@@ -1,6 +1,5 @@
 <?php
     date_default_timezone_set('Asia/Jakarta');
-    require('../../back-end/load_tipe.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -8,6 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daftar Kelas Daring</title>
+    <script type="text/javascript" src="../../back-end/jquery-3.5.1.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 </head>
 <body>
@@ -40,30 +40,19 @@
         <input type="password" class="form-control" name="password" id="exampleInputPassword1">
       </div>
       <div class="form-group">
-        <label for="tipeUser">Tipe User</label>
-        <select id="tipeUser" name="tipeUser" data-placeholder="Tipe User ..." require>
-            <option value="" label="Pilih User"></option>
-            <option value="2" label="Mahasiswa"></option>
-            <option value="1" label="Dosen"></option>
+        <label for="tipe_user">Tipe User</label>
+        <select id="tipeUser" name="tipe_user" data-placeholder="Tipe User ..." require>
+            <option value="" label="default"></option>
+            <option value="1">Dosen</option>
+            <option value="2">Mahasiswa</option>
         </select>
       </div>
-      <div class="form-group" id="select_mhs">
-        <label for="mhs">Tipe User</label>
-        <select id="mhs" name="mhs" data-placeholder="Tipe User ..." require>
-            <option value="" label="Pilih User"></option>
-            <?php
-              load_mhs();
-            ?>
+      <div class="form-group" >
+        <label for="komp">Pilih User</label>
+        <select id="komplemen" name="komp" require>
+            <option value="">--- Pilih User Dahulu ---</option>
         </select>
-      </div>
-      <div class="form-group" id="select_dos">
-        <label for="dos">Tipe User</label>
-        <select id="dos" name="dos" data-placeholder="Tipe User ..." require>
-            <option value="" label="Pilih User"></option>
-            <?php
-              load_dos();
-            ?>
-        </select>
+        <span id="load_user" style="display: none;">Loading User...</span>
       </div>
       <input type="hidden" value="<?= date("d-m-Y h:i:sa")?>" class="form-control"  name="create_at">
       <button type="submit" class="btn btn-warning" name="daftar">Daftar</button>
@@ -73,27 +62,25 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 <script src="https://cdn.rawgit.com/PascaleBeier/bootstrap-validate/v2.2.0/dist/bootstrap-validate.js" ></script>
-<script>bootstrapValidate(
-   '#myEmail',
-   'email:Enter a valid E-Mail Address!'
-   $("#tipeUser").click(function(){
-      $("p").hide();
-    });
-);</script>
+
 
 <script type="text/javascript">
-    $("#select_dos").hide();
-    $("#select_mhs").hide();
-
     $("#tipeUser").on("change",function(){
-        if(("#tipeUser").val() == 1){
-          $("#select_dos").show();
-        }else if(("#tipeUser").val() == 2){
-          $("#select_mhs").show();
-        }else{
-          alert("cok isien");
-        }
-    });
+      if($("#tipeUser").val()!=""){
+        $("#load_user").show();
+        var tipe= $("#tipeUser").val();
+        $.ajax({
+            type: "GET",
+            url: "load_tipe.php?tipe_user=" + tipe,
+            success: function(msg){
+                $("#load_user").hide();
+                $('#komplemen').html(msg);
+            }
+        });
+      }else{
+        $("#load_user").hide();
+      }
+	});
 </script>
 </body>
 </html>
