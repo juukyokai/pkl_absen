@@ -24,7 +24,7 @@
           <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
           <li><a href="index.html">Beranda</a></li>
           <li class="selected"><a href="class_register.php">Daftar Kelas</a></li>
-          <li><a href="../../back-end/logout.php">LOGOUT</a></li>
+          <li><a href="../../back-end/logout.php">Kembali ke Halaman Awal</a></li>
         </ul>
       </div>
     </div>
@@ -53,7 +53,7 @@
             <td>3</td>
             <td>G001</td>
             <td><a href="class_content.php">lihat</a></td>
-            <td><a href="index3.html">link</a></td>
+            <td><a href="../kelas/kelas.php">link</a></td>
           </tr>
           <tr>
             <td>2</td>
@@ -61,7 +61,7 @@
             <td>3</td>
             <td>G002</td>
             <td><a href="">lihat</a></td>
-            <td><a href="">link</a></td>
+            <td><a href="../kelas/kelas.php">link</a></td>
           </tr>
           <tr>
             <td>3</td>
@@ -69,7 +69,7 @@
             <td>3</td>
             <td>G003</td>
             <td><a href="">lihat</a></td>
-            <td><a href="">link</a></td>
+            <td><a href="../kelas/kelas.php">link</a></td>
           </tr>                                         
         </table>
       </div>
