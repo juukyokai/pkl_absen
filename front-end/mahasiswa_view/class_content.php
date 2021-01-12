@@ -25,7 +25,11 @@
       <div id="menubar">
         <ul id="menu">
           <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
+          <li><a href="index.php">Beranda</a></li>
           <li><a href="class_register.php">Daftar Kelas</a></li>
+          <li><a href="http://siamik.upnjatim.ac.id/">SIAMIK</a></li>
+          <li><a href="http://ilmu.upnjatim.ac.id/">E-Learning</a></li>
+          <li><a href="../../back-end/logout.php">Logout</a></li>
         </ul>
       </div>
     </div>

@@ -1,5 +1,6 @@
 <?php
 session_start();
+require('code.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,7 +30,7 @@ session_start();
 
 <div class="container mt-5">
     <h1 class="text-center">Login Kelas Daring</h1>
-    <form class="nt-5" action ="code.php" method="POST"> 
+    <form class="nt-5" method="POST"> 
   <div class="form-group">
     <label for="exampleInputEmail1">Username</label>
     <input type="text" class="form-control" name="username" >

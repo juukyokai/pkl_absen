@@ -17,7 +17,7 @@
         return $sql_mhs;        
     }
     //melakukan pengecekan apakah ada variable GET yang dikirim
-    require('../db_connect.php');
+    require('db_connect.php');
     $tipe_user = $_GET['tipe_user'];
 
     if($tipe_user == 1){

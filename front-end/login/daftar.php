@@ -1,5 +1,6 @@
 <?php
     date_default_timezone_set('Asia/Jakarta');
+    require('code.php')
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -8,7 +9,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daftar Kelas Daring</title>
     <script type="text/javascript" src="../../back-end/jquery-3.5.1.min.js"></script>
-    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 </head>
 <body>
@@ -31,7 +31,7 @@
 
 <div class="container mt-5">
     <h1 class="text-center">Daftar Kelas Daring</h1>
-    <form class="nt-5" action ="code.php" method="POST"> 
+    <form class="nt-5" method="POST"> 
       <div class="form-group">
         <label for="exampleInputEmail1">Masukkan Username</label>
         <input type="text" class="form-control"  name="username">
@@ -49,8 +49,8 @@
         </select>
       </div>
       <div class="form-group" >
-        Pilih User
-        <select id="komp" require>
+        <label for="id_komplemen">Pilih User
+        <select id="komp" name="id_komplemen" require>
             <option value="">--- Pilih User Dahulu ---</option>
         </select>
         <span id="load_user" style="display: none;">Loading User...</span>
@@ -60,11 +60,9 @@
     </form>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 <script src="https://cdn.rawgit.com/PascaleBeier/bootstrap-validate/v2.2.0/dist/bootstrap-validate.js" ></script>
-
-
 
 </body>
 <script type="text/javascript">
