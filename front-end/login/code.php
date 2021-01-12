@@ -20,7 +20,7 @@ if(isset($_POST['masuk'])){
             $_SESSION['username'] = $username;
             $_SESSION['id_komplemen'] = $row_login['id_komplemen'];
             $_SESSION['login_status'] = true;
-            header('Location: ../dosen_view/index.php');
+            header('Location: ../mahasiswa_view/index.html');
             exit;
         }else if($row_login['tipe_user'] == 2){
             header('Location: ../mahasiswa_view/index.html');
