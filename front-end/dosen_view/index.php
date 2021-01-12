@@ -6,6 +6,7 @@
         header("Location: ../login/index.php");
         exit;
     }
+    $id = $_SESSION['id_komplemen'];  
 ?>
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
@@ -103,6 +104,33 @@
                     <a class="navbar-brand" href="./"><img src="images/logo_upn.png" alt="Logo" style="height:36px"></a>
                     <a class="navbar-brand hidden" href="./"><img src="images/logo_upn.png" alt="Logo"></a>
                     <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
+                </div>
+            </div>
+            <div class="top-right">
+                <div class="header-menu">
+                    <div class="header-left">
+                        <?php
+                            $query_nama = "SELECT nama_dosen FROM dosen WHERE id_dosen=$id";
+                            require('access/db_connect.php');
+                            $result = $conn->query($query_nama);
+                            while($row_nama = mysqli_fetch_array($result)){
+                                echo("
+                                <a href='#'><button href='#' class='btn btn-secondary' type='button'>
+                                    <span class=''>". $row_nama['nama_dosen'] ."</span>
+                                </button></a>
+                                ");
+                            }
+                            $conn->close();
+                        ?>
+                    </div>
+                    <div class="user-area dropdown float-right">
+                        <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img class="user-avatar rounded-circle" src="images/admin.jpg" alt="User Avatar">
+                        </a>
+                        <div class="user-menu dropdown-menu">
+                            <a class="nav-link" href="../../back-end/logout.php"><i class="fa fa-power-off"></i>Logout</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </header>

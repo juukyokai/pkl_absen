@@ -1,27 +1,14 @@
 <?php 
     session_start();
-    $id = $_SESSION['id_komplemen'];
-    require('access/db_connect.php');
-    $query = "SELECT 
-    kelas.id_kelas,  
-    kelas.kode_nama_kelas,
-    kelas.hari_kelas, 
-    kelas.jam_kelas,
-    kelas.link_kelas,
-    dosen.nama_dosen,
-    mata_kuliah.nama_mk,
-    mata_kuliah.sks
-    FROM kelas,dosen, mata_kuliah
-    where kelas.id_mk=mata_kuliah.id_mk && kelas.id_dosen=dosen.id_dosen ORDER BY kode_nama_kelas";
-    $result = $conn->query($query);
-    $row = mysqli_fetch_array($result)
+    $id = $_SESSION['id_komplemen'];   
  ?>
 
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+<!--[if gt IE 8]><!--> 
+<html class="no-js" lang=""> <!--<![endif]-->
 <head>
     
     <meta charset="utf-8">
@@ -61,6 +48,7 @@
                     <li>
                         <a href="../../front-end/dosen_view/index.php"><i class="menu-icon fa fa-laptop"></i>Dashboard</a>
                     </li>
+                    <li class="menu-title">Manajemen Pengajaran</li><!-- /.menu-title -->
                     <li class="menu-item active">
                         <a href="#" class="menu-item"> <i class="menu-icon fa fa-table"></i>Daftar Kelas</a>
                     </li>
@@ -82,8 +70,8 @@
         <header id="header" class="header">
             <div class="top-left">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="./"><img src="images/logo.png" alt="Logo"></a>
-                    <a class="navbar-brand hidden" href="./"><img src="images/logo2.png" alt="Logo"></a>
+                    <a class="navbar-brand" href="./"><img src="images/logo_upn.png" alt="Logo" style="height:36px"></a>
+                    <a class="navbar-brand hidden" href="./"><img src="images/logo_upn.png" alt="Logo"></a>
                     <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
                 </div>
             </div>
@@ -104,7 +92,6 @@
                             $conn->close();
                         ?>
                     </div>
-
                     <div class="user-area dropdown float-right">
                         <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img class="user-avatar rounded-circle" src="images/admin.jpg" alt="User Avatar">
@@ -173,7 +160,21 @@
                                     </thead>
                                     <tbody>
                                     <?php
-                                            while($row_kelas = mysqli_fetch_array($result)):?>
+                                            require('access/db_connect.php');
+                                            $query = "SELECT 
+                                                kelas.id_kelas,  
+                                                kelas.kode_nama_kelas,
+                                                kelas.hari_kelas, 
+                                                kelas.jam_kelas,
+                                                kelas.link_kelas,
+                                                dosen.nama_dosen,
+                                                mata_kuliah.nama_mk,
+                                                mata_kuliah.sks
+                                                FROM kelas,dosen, mata_kuliah
+                                            where kelas.id_mk=mata_kuliah.id_mk && kelas.id_dosen=dosen.id_dosen && kelas.id_dosen=$id ORDER BY kode_nama_kelas";
+                                            $result = $conn->query($query);
+                                            $row = mysqli_fetch_array($result);
+                                            while($row_kelas = mysqli_fetch_array($result)){?>
                                                 <tr>
                                                     <td> <span class='name'><?php echo $row_kelas['kode_nama_kelas'] ?></span> </td>
                                                     <td> <span class='name'><?php echo $row_kelas['nama_mk'] ?></span> </td>
@@ -200,7 +201,8 @@
                                                     
                                                     </td>
                                                 </tr>
-                                            <?php endwhile;
+                                            <?php }
+                                                    
                                             ?>
                                     </tbody>
                                 </table>
@@ -370,29 +372,23 @@
     // Begin Aksi Insert
     $('#insert_form').on("submit", function(event){  
     event.preventDefault(); 
-    if($('#kode_nama_kelas').val() == "")  
-    {  
-    alert("Mohon Isi Kode Nama Kelas ");  
+    if($('#kode_nama_kelas').val() == ""){  
+        alert("Mohon Isi Kode Nama Kelas ");  
     }  
-    else if($('#id_mk').val() == '')  
-    {  
-    alert("Mohon Isi id_mk");  
-    }
-    else if($('#id_dosen').val() == '')  
-    {  
-    alert("Mohon Isi dosen");  
-    }
-    else if($('#hari_kelas').val() == '')  
-    {  
-    alert("Mohon Isi Hari Kelas");  
-    }
-    else if($('#jam_kelas').val() == '')  
-    {  
-    alert("Mohon Isi Jam Kelas");  
-    }
-    
-    else  
-    {  
+        else if($('#id_mk').val() == ''){  
+            alert("Mohon Isi id_mk");  
+        }
+            else if($('#id_dosen').val() == ''){  
+                alert("Mohon Isi dosen");  
+            }
+                else if($('#hari_kelas').val() == ''){  
+                    alert("Mohon Isi Hari Kelas");  
+                }
+                    else if($('#jam_kelas').val() == ''){  
+                        alert("Mohon Isi Jam Kelas");  
+                    }
+        
+    else{  
     $.ajax({  
         url:"../../back-end/tambahkelas.php",  
         method:"POST",  

@@ -1,5 +1,5 @@
 <?php
-    function prepare_query($id_mhs,$id_kelas){ 
+    function prepare_query($id_mhs){ 
         $query ="SELECT
                     kbm.id_kbm,
                     AVG(kbm.absen_awal) as kehadiran_awal,
@@ -12,7 +12,7 @@
                     kelas.kode_nama_kelas,
                     mata_kuliah.nama_mk
                 FROM kbm, mahasiswa, kelas, mata_kuliah
-                WHERE kbm.id_kelas=kelas.id_kelas AND kelas.id_mk=mata_kuliah.id_mk AND kbm.id_mhs=mahasiswa.id_mhs AND kelas.id_kelas=$id_kelas AND mahasiswa.id_mhs=$id_mhs
+                WHERE kbm.id_kelas=kelas.id_kelas AND kelas.id_mk=mata_kuliah.id_mk AND kbm.id_mhs=mahasiswa.id_mhs AND mahasiswa.id_mhs=$id_mhs
                 ORDER BY kbm.id_kbm";
         return $query;
     }
@@ -23,6 +23,7 @@
         $abs_total = 0;     //absen total
         $jml_hadir = 0;     //jumlah hadir
         $ket = "Non-Aktif";           //keaktifan
+
         require('db_connect.php');
         $result = $conn->query($query);
         while($row_query = mysqli_fetch_array($result)){
@@ -46,30 +47,28 @@
         }
         $conn->close();
     }
-    $kelas = 2;
+    // $kelas = 1;
+    $id_dosen = $_SESSION['id_komplemen'];
     $default_query ="SELECT DISTINCT
                         kbm.id_mhs
-                    FROM kbm, kelas 
+                    FROM kbm, kelas
                     WHERE
                         kbm.id_kelas=kelas.id_kelas     /*   kbm <-> kelas   */
                             AND
-                        kbm.id_kelas=$kelas             /* kelas G002 */
-                            AND 
-                        kelas.id_dosen=2                /* dosen Jefri */
+                        kelas.id_dosen=$id_dosen                /* dosen Jefri */
                     ORDER BY kbm.id_kbm";
 
 
     require('db_connect.php');
+    
     //preparing query
     $result = $conn->query($default_query);
     //loop-print table content
     while($row_absen = mysqli_fetch_array($result)){
-        $prep_query= prepare_query($row_absen['id_mhs'],$kelas);
+        $prep_query= prepare_query($row_absen['id_mhs']);
         processing_absen(
-            $prep_query
+             $prep_query
         );
     }
     $conn->close();
-    
-
 ?>

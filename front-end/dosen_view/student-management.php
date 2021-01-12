@@ -1,3 +1,7 @@
+<?php
+    session_start();
+    $id = $_SESSION['id_komplemen'];  
+?>
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
@@ -39,6 +43,7 @@
                     <li>
                         <a href="../../front-end/dosen_view/index.php"><i class="menu-icon fa fa-laptop"></i>Dashboard </a>
                     </li>
+                    <li class="menu-title">Manajemen Pengajaran</li><!-- /.menu-title -->
                     <li class="menu-item">
                         <a href="../../front-end/dosen_view/class-management.php" class="menu-item"> <i class="menu-icon fa fa-table"></i>Daftar Kelas</a>
                     </li>
@@ -60,32 +65,34 @@
         <header id="header" class="header">
             <div class="top-left">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="./"><img src="images/logo.png" alt="Logo"></a>
-                    <a class="navbar-brand hidden" href="./"><img src="images/logo2.png" alt="Logo"></a>
+                    <a class="navbar-brand" href="./"><img src="images/logo_upn.png" alt="Logo" style="height:36px"></a>
+                    <a class="navbar-brand hidden" href="./"><img src="images/logo_upn.png" alt="Logo"></a>
                     <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
                 </div>
             </div>
             <div class="top-right">
                 <div class="header-menu">
                     <div class="header-left">
-                        <button class="search-trigger"><i class="fa fa-search"></i></button>
-                        <div class="form-inline">
-                            <form class="search-form">
-                                <input class="form-control mr-sm-2" type="text" placeholder="Search ..." aria-label="Search">
-                                <button class="search-close" type="submit"><i class="fa fa-close"></i></button>
-                            </form>
-                        </div>
-
-                        
+                        <?php
+                            $query_nama = "SELECT nama_dosen FROM dosen WHERE id_dosen=$id";
+                            require('access/db_connect.php');
+                            $result = $conn->query($query_nama);
+                            while($row_nama = mysqli_fetch_array($result)){
+                                echo("
+                                <a href='#'><button href='#' class='btn btn-secondary' type='button'>
+                                    <span class=''>". $row_nama['nama_dosen'] ."</span>
+                                </button></a>
+                                ");
+                            }
+                            $conn->close();
+                        ?>
                     </div>
-
                     <div class="user-area dropdown float-right">
                         <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img class="user-avatar rounded-circle" src="images/admin.jpg" alt="User Avatar">
                         </a>
-
                         <div class="user-menu dropdown-menu">
-                            <a class="nav-link" href="#"><i class="fa fa-power-off"></i>Logout</a>
+                            <a class="nav-link" href="../../back-end/logout.php"><i class="fa fa-power-off"></i>Logout</a>
                         </div>
                     </div>
                 </div>
@@ -149,8 +156,6 @@
                             </div>
                         </div>
                     </div>
-
-
                 </div>
             </div><!-- .animated -->
         </div><!-- .content -->

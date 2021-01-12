@@ -1,3 +1,16 @@
+<?php
+    require('../db_connect.php');
+    $id = $_SESSION['id_komplemen'];
+    //preparing query
+    $sql_kelas =    //"SELECT * FROM kelas";
+    
+                    "SELECT kbm
+                    FROM kelas,dosen, mata_kuliah
+                    where kelas.id_mk=mata_kuliah.id_mk && kelas.id_dosen=dosen.id_dosen && dosen.id_dosen=$id ORDER BY kode_nama_kelas";
+                    
+    $result = $conn->query($sql_kelas);
+    //loop-print table content
+    ?>
 <!DOCTYPE HTML>
 <html>
 
@@ -22,54 +35,47 @@
       <div id="menubar">
         <ul id="menu">
           <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
-          <li><a href="index.html">Beranda</a></li>
-          <li class="selected"><a href="class_register.php">Daftar Kelas</a></li>
-          <li><a href="../../back-end/logout.php">Kembali ke Halaman Awal</a></li>
+          <li><a href="daftarkelas.html">Daftar Kelas</a></li>
         </ul>
       </div>
     </div>
     <div id="content_header"></div>
     <div id="site_content">
-      <div class="sidebar">
-        <!-- insert your sidebar items here -->
-          </p>
-        </form>
-      </div>
+
       <div id="content">
         <!-- insert the page content here -->
-        <h1>Daftar Kelas</h1>
+        <h1>List Mahasiswa</h1>
+        <h4>Pemrograman Web A</h4>
         <table border="1">
           <tr>
             <td>No</td>
-            <td>Mata Kuliah</td>
-            <td>SKS</td>
-            <td>Kode Kelas</td>
-            <td>List Mahasiswa</td>
-            <td>Link Kelas</td>
+            <td>Nama</td>
+            <td>NPM</td>
+            <td>Status</td>
           </tr>
           <tr>
             <td>1</td>
-            <td>Pemrograman Web</td>
-            <td>3</td>
-            <td>G001</td>
-            <td><a href="class_content.php">lihat</a></td>
-            <td><a href="index3.html">link</a></td>
+            <td>M. Faisal R.</td>
+            <td>18081010001</td>
+            <td>Aktif</td>
           </tr>
           <tr>
             <td>2</td>
-            <td>Manajemen IT</td>
-            <td>3</td>
-            <td>G002</td>
-            <td><a href="">lihat</a></td>
-            <td><a href="">link</a></td>
+            <td>Elang Eka M. P.</td>
+            <td>18081010068</td>
+            <td>Aktif</td>
           </tr>
           <tr>
             <td>3</td>
-            <td>Pemrograman API</td>
-            <td>3</td>
-            <td>G003</td>
-            <td><a href="">lihat</a></td>
-            <td><a href="">link</a></td>
+            <td>Dimas Amrulloh</td>
+            <td>18081010125</td>
+            <td>Aktif</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Fahmi A.D.</td>
+            <td>18081010128</td>
+            <td>Aktif</td>
           </tr>                                         
         </table>
       </div>
