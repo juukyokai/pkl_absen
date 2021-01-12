@@ -1,5 +1,5 @@
 <?php
-  $kelas = 1; //id - kode - nama - kelas
+  $kelas = $_GET['id_kelas']; //id - kode - nama - kelas $_GET['id_kelas'];
 ?>
 <!DOCTYPE HTML>
 <html>

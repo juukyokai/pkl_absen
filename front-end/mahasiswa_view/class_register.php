@@ -1,3 +1,7 @@
+<?php
+  session_start();
+  $id_mhs = $_SESSION['id_komplemen']; //$_SESSION['id_komplemen'];
+?>
 <!DOCTYPE HTML>
 <html>
 
@@ -41,36 +45,39 @@
         <table border="1">
           <tr>
             <td>No</td>
-            <td>Mata Kuliah</td>
+            <td>Nama Kelas</td>
             <td>SKS</td>
-            <td>Kode Kelas</td>
             <td>List Mahasiswa</td>
             <td>Link Kelas</td>
           </tr>
-          <tr>
-            <td>1</td>
-            <td>Pemrograman Web</td>
-            <td>3</td>
-            <td>G001</td>
-            <td><a href="class_content.php">lihat</a></td>
-            <td><a href="index3.html">link</a></td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Manajemen IT</td>
-            <td>3</td>
-            <td>G002</td>
-            <td><a href="">lihat</a></td>
-            <td><a href="">link</a></td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>Pemrograman API</td>
-            <td>3</td>
-            <td>G003</td>
-            <td><a href="">lihat</a></td>
-            <td><a href="">link</a></td>
-          </tr>                                         
+<?php
+        require('../../back-end/db_connect.php');
+        $query_mhs_kelas = " SELECT DISTINCT
+                                  kbm.id_kbm,
+                                  kelas.id_kelas,
+                                  kelas.link_kelas,
+                                  kelas.kode_nama_kelas,
+                                  mata_kuliah.sks,
+                                  mata_kuliah.nama_mk
+                              FROM kbm,kelas,mata_kuliah
+                              WHERE kbm.id_kelas = kelas.id_kelas AND kelas.id_mk=mata_kuliah.id_mk AND kbm.id_mhs = $id_mhs
+                            ";
+        $iterasi = 1;
+        $res_mhs_kelas = $conn->query($query_mhs_kelas);
+        while($row_mhs = mysqli_fetch_array($res_mhs_kelas)){
+          echo ("
+                <tr>
+                  <td>". $iterasi ."</td>
+                  <td>". $row_mhs['nama_mk'] ." - ". $row_mhs['kode_nama_kelas'] ."</td>
+                  <td>". $row_mhs['sks'] ."</td>
+                  <td><a href='class_content.php?id_kelas=". $row_mhs['id_kelas'] ."'>lihat</a></td>
+                  <td><a href='../kelas/kelas.php?id_kelas=". $row_mhs['id_kelas'] ."'>link</a></td>
+                </tr>
+          ");
+          $iterasi = $iterasi + 1;
+        }
+        $conn->close();
+?>                                     
         </table>
       </div>
     </div>

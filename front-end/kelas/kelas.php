@@ -57,8 +57,8 @@
       <div id="menubar">
         <ul id="menu">
           <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
-          <li><a href="index2.html">Beranda</a></li>
-          <li class="selected"><a href="daftarkelas.html">Daftar Kelas</a></li>
+          <li><a href="../mahasiswa_view/index.html">Beranda</a></li>
+          <li class="selected"><a href="../mahasiswa_view/class_register.php">Daftar Kelas</a></li>
         </ul>
       </div>
     </div>
@@ -70,9 +70,11 @@
           <?php
               require('../../back-end/db_connect.php');
               $query_link_kelas = " SELECT DISTINCT
+                                        kbm.id_kbm,
                                         kelas.id_kelas,
                                         kelas.link_kelas,
                                         kelas.kode_nama_kelas,
+                                        mata_kuliah.sks,
                                         mata_kuliah.nama_mk
                                     FROM kbm,kelas,mata_kuliah
                                     WHERE kbm.id_kelas = kelas.id_kelas AND kelas.id_mk=mata_kuliah.id_mk AND kbm.id_mhs = $id_mhs
