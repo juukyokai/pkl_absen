@@ -372,29 +372,23 @@
     // Begin Aksi Insert
     $('#insert_form').on("submit", function(event){  
     event.preventDefault(); 
-    if($('#kode_nama_kelas').val() == "")  
-    {  
-    alert("Mohon Isi Kode Nama Kelas ");  
+    if($('#kode_nama_kelas').val() == ""){  
+        alert("Mohon Isi Kode Nama Kelas ");  
     }  
-    else if($('#id_mk').val() == '')  
-    {  
-    alert("Mohon Isi id_mk");  
-    }
-    else if($('#id_dosen').val() == '')  
-    {  
-    alert("Mohon Isi dosen");  
-    }
-    else if($('#hari_kelas').val() == '')  
-    {  
-    alert("Mohon Isi Hari Kelas");  
-    }
-    else if($('#jam_kelas').val() == '')  
-    {  
-    alert("Mohon Isi Jam Kelas");  
-    }
-    
-    else  
-    {  
+        else if($('#id_mk').val() == ''){  
+            alert("Mohon Isi id_mk");  
+        }
+            else if($('#id_dosen').val() == ''){  
+                alert("Mohon Isi dosen");  
+            }
+                else if($('#hari_kelas').val() == ''){  
+                    alert("Mohon Isi Hari Kelas");  
+                }
+                    else if($('#jam_kelas').val() == ''){  
+                        alert("Mohon Isi Jam Kelas");  
+                    }
+        
+    else{  
     $.ajax({  
         url:"../../back-end/tambahkelas.php",  
         method:"POST",  
