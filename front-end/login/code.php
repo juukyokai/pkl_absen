@@ -38,7 +38,7 @@ if(isset($_POST['daftar'])){
     $id_komplemen = $_POST['id_komplemen'];
     $username = $_POST['username'];
     $password = $_POST['password'];
-    $tipe_user = $_POST['tipe_user'];  
+    $tipe_user = $_POST['tipe_user'];
         
         
         $query = "INSERT INTO user (id_komplemen,username,password,tipe_user) VALUES ('$id_komplemen','$username','$password','$tipe_user')";
