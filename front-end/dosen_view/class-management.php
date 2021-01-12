@@ -1,20 +1,6 @@
 <?php 
     session_start();
     $id = $_SESSION['id_komplemen'];
-    //index.php
-    // require('access/db_connect.php');
-    // $query = "SELECT 
-    // kelas.id_kelas,  
-    // kelas.kode_nama_kelas,
-    // kelas.hari_kelas, 
-    // kelas.jam_kelas,
-    // dosen.nama_dosen,
-    // mata_kuliah.nama_mk,
-    // mata_kuliah.sks
-    // FROM kelas,dosen, mata_kuliah
-    // where kelas.id_mk=mata_kuliah.id_mk && kelas.id_dosen=dosen.id_dosen ORDER BY kode_nama_kelas";
-    // $result = $conn->query($query);
-    // $row = mysqli_fetch_array($result)
     require('access/db_connect.php');
     $query = "SELECT 
     kelas.id_kelas,  
@@ -193,7 +179,7 @@
                                                     <td> <span class='name'><?php echo $row_kelas['nama_mk'] ?></span> </td>
                                                     <td> <span class='count'><?php echo $row_kelas['sks'] ?></span> </td>
                                                     <td> <span class='name'><?php echo $row_kelas['nama_dosen'] ?></span> </td>
-                                                    <td><span class='product'><?php echo $row_kelas['link_kelas'] ?></span></td>
+                                                    <td><a href="<?php echo $row_kelas['link_kelas'] ?>"><span class='product'><?php echo $row_kelas['link_kelas'] ?></a></span></td>
                                                     <td><span class='product'><?php echo $row_kelas['hari_kelas'] ?></span></td>
                                                     <td><span class=><?php echo $row_kelas['jam_kelas'] ?></span></td>
                                                     <td>
