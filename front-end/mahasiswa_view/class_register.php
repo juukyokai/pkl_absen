@@ -24,7 +24,7 @@
           <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
           <li><a href="index.html">Beranda</a></li>
           <li class="selected"><a href="class_register.php">Daftar Kelas</a></li>
-          <li><a href="../../back-end/logout.php">Kembali ke Halaman Awal</a></li>
+          <li><a href="../../back-end/logout.php">LOGOUT</a></li>
         </ul>
       </div>
     </div>
