@@ -12,7 +12,7 @@ if(isset($_POST['masuk'])){
     
     
     
-    $query = "SELECT username,id_komplemen, tipe_user FROM user WHERE username = '$username' AND password = '$password'";
+    $query = "SELECT username,id_komplemen,tipe_user FROM user WHERE username = '$username' AND password = '$password'";
     $result = $conn->query($query);
     
     if($row_login = mysqli_fetch_array($result)){
@@ -23,6 +23,9 @@ if(isset($_POST['masuk'])){
             header('Location: ../dosen_view/index.php');
             exit;
         }else if($row_login['tipe_user'] == 2){
+            $_SESSION['username'] = $username;
+            $_SESSION['id_komplemen'] = $row_login['id_komplemen'];
+            $_SESSION['login_status'] = true;
             header('Location: ../mahasiswa_view/index.html');
             exit;
         }

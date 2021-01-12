@@ -3,8 +3,8 @@
     // if(!isset($_GET['id_kelas'])){
     //   $id_kelas = $_GET['id_kelas'];
     // }
-    $id_kelas = $_GET['id_kelas'];; //ganti id_kelas berdasarkan 
-    $id_mhs = 1; //ganti id_mhs berdasarkan $_SESSION['id_komplemen'];
+    $id_kelas = $_GET['id_kelas']; //ganti id_kelas berdasarkan 
+    $id_mhs = $_SESSION['id_komplemen']; //ganti id_mhs berdasarkan $_SESSION['id_komplemen'];
     require('../../back-end/db_connect.php');
     $prep_query_dosen = " SELECT
                               kelas.kode_nama_kelas,
@@ -70,7 +70,6 @@
           <?php
               require('../../back-end/db_connect.php');
               $query_link_kelas = " SELECT DISTINCT
-                                        kbm.id_kbm,
                                         kelas.id_kelas,
                                         kelas.link_kelas,
                                         kelas.kode_nama_kelas,

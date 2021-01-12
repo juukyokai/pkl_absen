@@ -1,5 +1,6 @@
 <?php
-date_default_timezone_set('Asia/Jakarta');
+    date_default_timezone_set('Asia/Jakarta');
+    require('../../back-end/load_tipe.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,13 +19,10 @@ date_default_timezone_set('Asia/Jakarta');
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href="index3.php">Home<span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="../index.html">Home<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="daftar.php">Daftar Akun</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="index.html">Kembali ke Halaman Awal</a>
+        <a class="nav-link" href="index.php">Login</a>
       </li>
     </ul>
   </div>
@@ -33,17 +31,43 @@ date_default_timezone_set('Asia/Jakarta');
 <div class="container mt-5">
     <h1 class="text-center">Daftar Kelas Daring</h1>
     <form class="nt-5" action ="code.php" method="POST"> 
-  <div class="form-group">
-    <label for="exampleInputEmail1">Masukkan Username</label>
-    <input type="text" class="form-control"  name="username">
-  </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">Password</label>
-    <input type="password" class="form-control" name="password" id="exampleInputPassword1">
-  </div>
-  <input type="hidden" value="<?= date("d-m-Y h:i:sa")?>" class="form-control"  name="create_at">
-  <button type="submit" class="btn btn-warning" name="daftar">Daftar</button>
-</form>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Masukkan Username</label>
+        <input type="text" class="form-control"  name="username">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Password</label>
+        <input type="password" class="form-control" name="password" id="exampleInputPassword1">
+      </div>
+      <div class="form-group">
+        <label for="tipeUser">Tipe User</label>
+        <select id="tipeUser" name="tipeUser" data-placeholder="Tipe User ..." require>
+            <option value="" label="Pilih User"></option>
+            <option value="2" label="Mahasiswa"></option>
+            <option value="1" label="Dosen"></option>
+        </select>
+      </div>
+      <div class="form-group" id="select_mhs">
+        <label for="mhs">Tipe User</label>
+        <select id="mhs" name="mhs" data-placeholder="Tipe User ..." require>
+            <option value="" label="Pilih User"></option>
+            <?php
+              load_mhs();
+            ?>
+        </select>
+      </div>
+      <div class="form-group" id="select_dos">
+        <label for="dos">Tipe User</label>
+        <select id="dos" name="dos" data-placeholder="Tipe User ..." require>
+            <option value="" label="Pilih User"></option>
+            <?php
+              load_dos();
+            ?>
+        </select>
+      </div>
+      <input type="hidden" value="<?= date("d-m-Y h:i:sa")?>" class="form-control"  name="create_at">
+      <button type="submit" class="btn btn-warning" name="daftar">Daftar</button>
+    </form>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
@@ -52,6 +76,24 @@ date_default_timezone_set('Asia/Jakarta');
 <script>bootstrapValidate(
    '#myEmail',
    'email:Enter a valid E-Mail Address!'
+   $("#tipeUser").click(function(){
+      $("p").hide();
+    });
 );</script>
+
+<script type="text/javascript">
+    $("#select_dos").hide();
+    $("#select_mhs").hide();
+
+    $("#tipeUser").on("change",function(){
+        if(("#tipeUser").val() == 1){
+          $("#select_dos").show();
+        }else if(("#tipeUser").val() == 2){
+          $("#select_mhs").show();
+        }else{
+          alert("cok isien");
+        }
+    });
+</script>
 </body>
 </html>

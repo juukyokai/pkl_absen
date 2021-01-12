@@ -53,7 +53,6 @@
 <?php
         require('../../back-end/db_connect.php');
         $query_mhs_kelas = " SELECT DISTINCT
-                                  kbm.id_kbm,
                                   kelas.id_kelas,
                                   kelas.link_kelas,
                                   kelas.kode_nama_kelas,
