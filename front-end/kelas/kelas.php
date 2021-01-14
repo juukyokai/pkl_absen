@@ -1,8 +1,12 @@
 <?php
     session_start();
-    // if(!isset($_GET['id_kelas'])){
-    //   $id_kelas = $_GET['id_kelas'];
-    // }
+
+    
+    $timestamp = date("d-m-Y h:i:s");
+    $date = date("Y-m-d");
+    $time = date("h:i");
+    
+
     $id_kelas = $_GET['id_kelas']; //ganti id_kelas berdasarkan 
     $id_mhs = $_SESSION['id_komplemen']; //ganti id_mhs berdasarkan $_SESSION['id_komplemen'];
     require('../../back-end/db_connect.php');
@@ -40,6 +44,7 @@
   <meta name="description" content="website description" />
   <meta name="keywords" content="website keywords, website keywords" />
   <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
+  <script type="text/javascript" src="../../back-end/jquery-3.5.1.min.js"></script>
   <link rel="stylesheet" type="text/css" href="style/style.css" title="style" />
   <link rel="stylesheet" href="style/c_style.css">
 </head>
@@ -50,7 +55,7 @@
       <div id="logo">
         <div id="logo_text">
           <!-- class="logo_colour", allows you to change the colour of the text -->
-          <h1>Kelas Daring</a></h1>
+          <h1>Kelas Daring</h1>
           <h2>Informatika UPN "Veteran" Jawa Timur</h2>
         </div>
       </div>
@@ -119,11 +124,87 @@
                       <h4>Kelas :</h4>
                       <p>". $nama_mk ." - ". $kode_kelas ."</p>
                       <p>". $hari .", ". $jam ."</p>
-                      <p>Link Kelas : <a href='#'>". $link ."</a></p>
                   </div>
               ");
         ?>
+        <?php
+          require('../../back-end/db_connect.php');
+          require('masuk_kelas.php');
+          require('keluar_kelas.php');
+          // var_dump($date); die;
+          $query_cek_absen =" SELECT 
+                                  *
+                              FROM kbm 
+                              WHERE id_kelas = $id_kelas AND id_mhs = $id_mhs AND create_at like '$date %'
+                            ";
+          $num_rows = mysqli_num_rows(mysqli_query($conn,$query_cek_absen));
+          // var_dump($num_rows); die;
+          if($num_rows != ""){
+            $res_absen = $conn->query($query_cek_absen);
+            while($row_absen = mysqli_fetch_array($res_absen)){
+              // var_dump($row_absen); die;
+              echo ("
+                      <style>
+                        .visible{
+                          display:block;
+                        }
+                      </style>
+                      <div class='visible'>
+                        <table style='text-align:center'>
+                          <tr>
+                            <th> Absen Masuk  </th>
+                            <th> Absen Keluar </th>
+                          </tr>
+                          <tr>
+                    ");
+                    //cek masuk
+                    if($row_absen['absen_awal']==1){
+                      echo ("<td id='absen_masuk'>Sudah</td>");
+                    }else{
+                      echo ("<td id='absen_masuk'>Belum</td>");
+                    }
+                    //cek keluar
+                    if($row_absen['absen_akhir']==1){
+                      echo ("<td id='absen_keluar'>Sudah</td>");
+                    }else{
+                      echo ("<td id='absen_keluar'>Belum</td>");
+                    }
+              echo ("
+                          </tr>
+                          <tr>
+                            <td><a href='absen_masuk.php?id_kelas=". $id_kelas ."&absen=1'>Absen Disini</a></td>
+                            <td><a href='absen_keluar.php?id_kelas=". $id_kelas ."&absen=1'>Absen Disini</a></td>
+                          </tr>
+                        </table>
+                      </div>
+                      <form method='POST'>
+                          <input id='but_masuk' type='submit' class='btn btn-success' value='Masuk Kelas' name='masuk_kelas' />
+                          <span id='proses_masuk' style='display:none'>Proses...</span>
+                          <input id='but_keluar' type='submit' class='btn btn-success' value='Keluar Kelas' name='keluar_kelas' />
+                          <span id='proses_masuk' style='display:none'>Proses...</span>
+                    </form>
+                  ");
+            }
+          }else{
+            echo ("
+                    <style>
+                      .visible{
+                        display:none;
+                      }
+                    </style>
+                    <form method='POST'>
+                          <input id='but_masuk' type='submit' class='btn btn-success' value='Masuk Kelas' name='masuk_kelas' />
+                          <span id='proses_masuk' style='display:none'>Proses...</span>
+                          <input id='but_keluar' type='submit' class='btn btn-success' value='Masuk Kelas' name='keluar_kelas' />
+                          <span id='proses_masuk' style='display:none'>Proses...</span>
+                    </form>
+            ");
+        }
+          $conn->close();
+        ?>
+        
     </div>
+    <br>
     <footer id="content_footer"></div>
         <div id="footer">
         PRAKTEK KERJA LAPANGAN INFORMATIKA UPN"V"JT 2020 <!--| Copyright &copy;colour_orange--> | <a href="https://github.com/juukyokai/pkl_absen">MORE INFO</a>
@@ -131,3 +212,34 @@
     </footer>
 </body>
 </html>
+<script type="text/javascript">
+    $("#but_masuk").on("click",function(){
+        $("#proses_masuk").show()
+        $.ajax({
+            type: "POST",
+            url: "update_kelas.php",
+            success: function(msg){
+                $("#proses_masuk").show()
+                alert("Selesai");
+            },
+            error: function (msg) {
+                    alert("AjaxError");
+                }
+        });
+	  });
+    $("#but_keluar").on("click",function(){
+        $("#proses_keluar").show()
+        $.ajax({
+            type: "POST",
+            url: "update_kelas.php",
+            success: function(msg){
+                $("#proses_keluar").show()
+                $("#but_keluar").prop("disabled",true);
+                alert("Selesai");
+            },
+            error: function (msg) {
+                    alert("AjaxError");
+                }
+        });
+	  });
+</script>
