@@ -173,7 +173,6 @@
                                                 FROM kelas,dosen, mata_kuliah
                                             where kelas.id_mk=mata_kuliah.id_mk && kelas.id_dosen=dosen.id_dosen && kelas.id_dosen=$id ORDER BY kode_nama_kelas";
                                             $result = $conn->query($query);
-                                            $row = mysqli_fetch_array($result);
                                             while($row_kelas = mysqli_fetch_array($result)){?>
                                                 <tr>
                                                     <td> <span class='name'><?php echo $row_kelas['kode_nama_kelas'] ?></span> </td>
