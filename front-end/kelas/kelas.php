@@ -1,11 +1,16 @@
 <?php
     session_start();
-    // if(!isset($_GET['id_kelas'])){
-    //   $id_kelas = $_GET['id_kelas'];
-    // }
+
+    
+    $timestamp = date("d-m-Y h:i:s");
+    $date = date("Y-m-d");
+    $time = date("h:i");
+    
+
     $id_kelas = $_GET['id_kelas']; //ganti id_kelas berdasarkan 
     $id_mhs = $_SESSION['id_komplemen']; //ganti id_mhs berdasarkan $_SESSION['id_komplemen'];
     require('../../back-end/db_connect.php');
+    require('update_kelas.php');
     $prep_query_dosen = " SELECT
                               kelas.kode_nama_kelas,
                               kelas.link_kelas,
@@ -40,6 +45,7 @@
   <meta name="description" content="website description" />
   <meta name="keywords" content="website keywords, website keywords" />
   <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
+  <script type="text/javascript" src="../../back-end/jquery-3.5.1.min.js"></script>
   <link rel="stylesheet" type="text/css" href="style/style.css" title="style" />
   <link rel="stylesheet" href="style/c_style.css">
 </head>
@@ -50,7 +56,7 @@
       <div id="logo">
         <div id="logo_text">
           <!-- class="logo_colour", allows you to change the colour of the text -->
-          <h1>Kelas Daring</a></h1>
+          <h1>Kelas Daring</h1>
           <h2>Informatika UPN "Veteran" Jawa Timur</h2>
         </div>
       </div>
@@ -119,11 +125,17 @@
                       <h4>Kelas :</h4>
                       <p>". $nama_mk ." - ". $kode_kelas ."</p>
                       <p>". $hari .", ". $jam ."</p>
-                      <p>Link Kelas : <a href='#'>". $link ."</a></p>
                   </div>
               ");
         ?>
+        <form method="POST">
+              <input id="but_masuk" type="submit" class="btn btn-success" value="Masuk Kelas" name="absen_masuk" />
+              <span id="proses_masuk" style="display:none">Proses...</span>
+              <input id="but_keluar" type="submit" class="btn btn-warning" value="Keluar Kelas" name="absen_keluar" />
+              <span id="proses_keluar" style="display:none">Proses...</span>
+        </form>
     </div>
+    <br>
     <footer id="content_footer"></div>
         <div id="footer">
         PRAKTEK KERJA LAPANGAN INFORMATIKA UPN"V"JT 2020 <!--| Copyright &copy;colour_orange--> | <a href="https://github.com/juukyokai/pkl_absen">MORE INFO</a>
@@ -131,3 +143,34 @@
     </footer>
 </body>
 </html>
+<script type="text/javascript">
+    $("#but_masuk").on("click",function(){
+        $("#proses_masuk").show()
+        $.ajax({
+            type: "POST",
+            url: "update_kelas.php",
+            success: function(msg){
+                $("#proses_masuk").show()
+                alert("Selesai");
+            },
+            error: function (msg) {
+                    alert("AjaxError");
+                }
+        });
+	  });
+    $("#but_keluar").on("click",function(){
+        $("#proses_keluar").show()
+        $.ajax({
+            type: "POST",
+            url: "update_kelas.php",
+            success: function(msg){
+                $("#proses_keluar").show()
+                $("#but_keluar").prop("disabled",true);
+                alert("Selesai");
+            },
+            error: function (msg) {
+                    alert("AjaxError");
+                }
+        });
+	  });
+</script>
