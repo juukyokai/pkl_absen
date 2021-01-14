@@ -216,7 +216,10 @@
                                     </div>
                                     <div class="stat-content">
                                         <div class="text-left dib">
-                                            <div class="stat-text"><span class="count">2986</span></div>
+                                            <div class="stat-text"><span class="count">
+                                                <?php
+                                                    require('../../back-end/jumlah_jurusan.php');
+                                                ?></span></div>
                                             <div class="stat-heading">Work Hour</div>
                                         </div>
                                     </div>
@@ -243,7 +246,7 @@
                                 <div class="col-lg-4">
                                     <div class="card-body">
                                         <div class="progress-box progress-1">
-                                            <h4 class="por-title">Total Students</h4>
+                                            <h4 class="por-title">Mahasiswa</h4>
                                             <div class="por-txt">
                                                 <?php
                                                     require('../../back-end/jumlah_mhs.php');
@@ -254,7 +257,7 @@
                                             </div>
                                         </div>
                                         <div class="progress-box progress-2">
-                                            <h4 class="por-title">Subjects</h4>
+                                            <h4 class="por-title">Mata Kuliah</h4>
                                             <div class="por-txt">
                                                 <?php
                                                     require('../../back-end/jumlah_mk.php');
@@ -265,7 +268,7 @@
                                             </div>
                                         </div>
                                         <div class="progress-box progress-2">
-                                            <h4 class="por-title">Classes</h4>
+                                            <h4 class="por-title">Kelas</h4>
                                             <div class="por-txt">
                                                 <?php
                                                     require('../../back-end/jumlah_kelas.php');
@@ -530,27 +533,30 @@
                         labels: [ "jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul" ],
                         datasets: [
                         {
-                            label: "People",
-                            borderColor: "rgba(4, 73, 203,.9)",
-                            borderWidth: "1",
-                            backgroundColor: "rgba(4, 73, 203,.5)",
-                            data: [ 0, 2900, 5000, 3300, 6000, 3250, 0 ]
-                        },
-                        {
-                            label: "Class",
-                            borderColor: "rgba(245, 23, 66, 0.9)",
-                            borderWidth: "1",
-                            backgroundColor: "rgba(245, 23, 66,.5)",
-                            pointHighlightStroke: "rgba(245, 23, 66,.5)",
-                            data: [ 0, 4200, 4500, 1600, 4200, 1500, 4000 ]
-                        },
-                        {
-                            label: "Activity",
+                            label: "Mata Kuliah",
                             borderColor: "rgba(40, 169, 46, 0.9)",
                             borderWidth: "1",
                             backgroundColor: "rgba(40, 169, 46, .5)",
                             pointHighlightStroke: "rgba(40, 169, 46,.5)",
-                            data: [1000, 5200, 3600, 2600, 4200, 5300, 0 ]
+                            //data: [1000, 5200, 3600, 2600, 4200, 5300, 0 ]
+                            data: [<?php require('../../back-end/jumlah_mk.php');?>,0,0,0,0,0,0]
+                        },
+                        {
+                            label: "Mahasiswa",
+                            borderColor: "rgba(4, 73, 203,.9)",
+                            borderWidth: "1",
+                            backgroundColor: "rgba(4, 73, 203,.5)",
+                            // data: [ 0, 2900, 5000, 3300, 6000, 3250, 0 ]
+                            data: [<?php require('../../back-end/jumlah_mhs.php');?>,0,0,0,0,0,0]
+                        },
+                        {
+                            label: "Kelas",
+                            borderColor: "rgba(245, 23, 66, 0.9)",
+                            borderWidth: "1",
+                            backgroundColor: "rgba(245, 23, 66,.5)",
+                            pointHighlightStroke: "rgba(245, 23, 66,.5)",
+                            //data: [ 0, 4200, 4500, 1600, 4200, 1500, 4000 ]
+                            data: [<?php require('../../back-end/jumlah_kelas.php');?>,0,0,0,0,0,0]
                         }
                         ]
                     },
