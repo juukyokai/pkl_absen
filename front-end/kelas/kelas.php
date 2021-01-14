@@ -10,7 +10,6 @@
     $id_kelas = $_GET['id_kelas']; //ganti id_kelas berdasarkan 
     $id_mhs = $_SESSION['id_komplemen']; //ganti id_mhs berdasarkan $_SESSION['id_komplemen'];
     require('../../back-end/db_connect.php');
-    require('update_kelas.php');
     $prep_query_dosen = " SELECT
                               kelas.kode_nama_kelas,
                               kelas.link_kelas,
@@ -128,12 +127,82 @@
                   </div>
               ");
         ?>
-        <form method="POST">
-              <input id="but_masuk" type="submit" class="btn btn-success" value="Masuk Kelas" name="absen_masuk" />
-              <span id="proses_masuk" style="display:none">Proses...</span>
-              <input id="but_keluar" type="submit" class="btn btn-warning" value="Keluar Kelas" name="absen_keluar" />
-              <span id="proses_keluar" style="display:none">Proses...</span>
-        </form>
+        <?php
+          require('../../back-end/db_connect.php');
+          require('masuk_kelas.php');
+          require('keluar_kelas.php');
+          // var_dump($date); die;
+          $query_cek_absen =" SELECT 
+                                  *
+                              FROM kbm 
+                              WHERE id_kelas = $id_kelas AND id_mhs = $id_mhs AND create_at like '$date %'
+                            ";
+          $num_rows = mysqli_num_rows(mysqli_query($conn,$query_cek_absen));
+          // var_dump($num_rows); die;
+          if($num_rows != ""){
+            $res_absen = $conn->query($query_cek_absen);
+            while($row_absen = mysqli_fetch_array($res_absen)){
+              // var_dump($row_absen); die;
+              echo ("
+                      <style>
+                        .visible{
+                          display:block;
+                        }
+                      </style>
+                      <div class='visible'>
+                        <table style='text-align:center'>
+                          <tr>
+                            <th> Absen Masuk  </th>
+                            <th> Absen Keluar </th>
+                          </tr>
+                          <tr>
+                    ");
+                    //cek masuk
+                    if($row_absen['absen_awal']==1){
+                      echo ("<td id='absen_masuk'>Sudah</td>");
+                    }else{
+                      echo ("<td id='absen_masuk'>Belum</td>");
+                    }
+                    //cek keluar
+                    if($row_absen['absen_akhir']==1){
+                      echo ("<td id='absen_keluar'>Sudah</td>");
+                    }else{
+                      echo ("<td id='absen_keluar'>Belum</td>");
+                    }
+              echo ("
+                          </tr>
+                          <tr>
+                            <td><a href='absen_masuk.php?id_kelas=". $id_kelas ."&absen=1'>Absen Disini</a></td>
+                            <td><a href='absen_keluar.php?id_kelas=". $id_kelas ."&absen=1'>Absen Disini</a></td>
+                          </tr>
+                        </table>
+                      </div>
+                      <form method='POST'>
+                          <input id='but_masuk' type='submit' class='btn btn-success' value='Masuk Kelas' name='masuk_kelas' />
+                          <span id='proses_masuk' style='display:none'>Proses...</span>
+                          <input id='but_keluar' type='submit' class='btn btn-success' value='Keluar Kelas' name='keluar_kelas' />
+                          <span id='proses_masuk' style='display:none'>Proses...</span>
+                    </form>
+                  ");
+            }
+          }else{
+            echo ("
+                    <style>
+                      .visible{
+                        display:none;
+                      }
+                    </style>
+                    <form method='POST'>
+                          <input id='but_masuk' type='submit' class='btn btn-success' value='Masuk Kelas' name='masuk_kelas' />
+                          <span id='proses_masuk' style='display:none'>Proses...</span>
+                          <input id='but_keluar' type='submit' class='btn btn-success' value='Masuk Kelas' name='keluar_kelas' />
+                          <span id='proses_masuk' style='display:none'>Proses...</span>
+                    </form>
+            ");
+        }
+          $conn->close();
+        ?>
+        
     </div>
     <br>
     <footer id="content_footer"></div>

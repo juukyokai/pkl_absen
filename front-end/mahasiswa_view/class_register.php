@@ -46,11 +46,11 @@
         <h1>Daftar Kelas</h1>
         <table border="1">
           <tr>
-            <td>No</td>
-            <td>Nama Kelas</td>
-            <td>SKS</td>
-            <td>List Mahasiswa</td>
-            <td>Link Kelas</td>
+            <th>No</th>
+            <th>Nama Kelas</th>
+            <th>SKS</th>
+            <th>List Mahasiswa</th>
+            <th>Link Kelas</th>
           </tr>
 <?php
         require('../../back-end/db_connect.php');
