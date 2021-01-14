@@ -171,10 +171,6 @@
                     }
               echo ("
                           </tr>
-                          <tr>
-                            <td><a href='absen_masuk.php?id_kelas=". $id_kelas ."&absen=1'>Absen Disini</a></td>
-                            <td><a href='absen_keluar.php?id_kelas=". $id_kelas ."&absen=1'>Absen Disini</a></td>
-                          </tr>
                         </table>
                       </div>
                       <form method='POST'>
@@ -193,13 +189,13 @@
                       }
                     </style>
                     <form method='POST'>
-                          <input id='but_masuk' type='submit' class='btn btn-success' value='Masuk Kelas' name='masuk_kelas' />
+                          <input id='but_masuk' type='submit' class='' value='Masuk Kelas' name='masuk_kelas' />
                           <span id='proses_masuk' style='display:none'>Proses...</span>
-                          <input id='but_keluar' type='submit' class='btn btn-success' value='Masuk Kelas' name='keluar_kelas' />
-                          <span id='proses_masuk' style='display:none'>Proses...</span>
+                          <input id='but_keluar' type='submit' class='' value='Masuk Kelas' name='keluar_kelas' />
+                          <span id='proses_keluar' style='display:none'>Proses...</span>
                     </form>
             ");
-        }
+          }
           $conn->close();
         ?>
         
@@ -212,12 +208,12 @@
     </footer>
 </body>
 </html>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
     $("#but_masuk").on("click",function(){
         $("#proses_masuk").show()
         $.ajax({
             type: "POST",
-            url: "update_kelas.php",
+            url: "masuk_kelas.php",
             success: function(msg){
                 $("#proses_masuk").show()
                 alert("Selesai");
@@ -231,7 +227,7 @@
         $("#proses_keluar").show()
         $.ajax({
             type: "POST",
-            url: "update_kelas.php",
+            url: "keluar_kelas.php",
             success: function(msg){
                 $("#proses_keluar").show()
                 $("#but_keluar").prop("disabled",true);
@@ -242,4 +238,4 @@
                 }
         });
 	  });
-</script>
+</script> -->
