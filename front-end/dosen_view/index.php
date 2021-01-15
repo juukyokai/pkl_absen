@@ -155,7 +155,7 @@
                                                     require('../../back-end/jumlah_mhs.php');
                                                 ?>
                                             </span></div>
-                                            <div class="stat-heading">Students</div>
+                                            <div class="stat-heading">Mahasiswa</div>
                                         </div>
                                     </div>
                                 </div>
@@ -177,7 +177,7 @@
                                                     require('../../back-end/jumlah_kelas.php');
                                                 ?>
                                             </span></div>
-                                            <div class="stat-heading">Classes</div>
+                                            <div class="stat-heading">Kelas</div>
                                         </div>
                                     </div>
                                 </div>
@@ -199,7 +199,7 @@
                                                     require('../../back-end/jumlah_mk.php');
                                                 ?>
                                             </span></div>
-                                            <div class="stat-heading">Subjects</div>
+                                            <div class="stat-heading">Mata Kuliah</div>
                                         </div>
                                     </div>
                                 </div>
@@ -251,7 +251,7 @@
                                                 <?php
                                                     require('../../back-end/jumlah_mhs.php');
                                                 ?>
-                                                 Students</div>
+                                                 Mahasiswa</div>
                                             <div class="progress mb-2" style="height: 5px;">
                                                 <div class="progress-bar bg-flat-color-1" role="progressbar" style="width: 40%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                             </div>
@@ -262,7 +262,7 @@
                                                 <?php
                                                     require('../../back-end/jumlah_mk.php');
                                                 ?>
-                                                 Subjects</div>
+                                                 Mata Kuliah</div>
                                             <div class="progress mb-2" style="height: 5px;">
                                                 <div class="progress-bar bg-flat-color-2" role="progressbar" style="width: 24%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                             </div>
@@ -273,7 +273,7 @@
                                                 <?php
                                                     require('../../back-end/jumlah_kelas.php');
                                                 ?>
-                                                Classes</div>
+                                                Kelas</div>
                                             <div class="progress mb-2" style="height: 5px;">
                                                 <div class="progress-bar bg-flat-color-3" role="progressbar" style="width: 15%;" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
                                             </div>

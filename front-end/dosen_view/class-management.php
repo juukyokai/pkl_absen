@@ -254,7 +254,7 @@
                                         <select id="id_dosen" name="id_dosen" data-placeholder="Pilih Dosen ..." multiple class="standardSelect">
                                             <option value="" label="default"></option>
                                             <?php
-                                                require('../../back-end/load_dosen.php');
+                                                require('../../back-end/load_dosen_tambah.php');
                                             ?>
                                         </select>
                                     </div>
