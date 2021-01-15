@@ -220,7 +220,7 @@
                                                 <?php
                                                     require('../../back-end/jumlah_jurusan.php');
                                                 ?></span></div>
-                                            <div class="stat-heading">Work Hour</div>
+                                            <div class="stat-heading">Majors</div>
                                         </div>
                                     </div>
                                 </div>
@@ -415,7 +415,7 @@
             <div class="footer-inner bg-white">
                 <div class="row">
                     <div class="col-sm-6">
-                        Copyright &copy; 2021 PKL Informatika
+                        Copyright &copy; 2021 PKL INFORMATIKA
                     </div>
                     <div class="col-sm-6 text-right">
                         Designed by <a href="https://colorlib.com">Colorlib</a>
